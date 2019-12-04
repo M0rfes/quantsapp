@@ -1,0 +1,30 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+}
+.subGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-width: 75px;
+  min-height: 75px;
+}
+small {
+  font-size: xx-small;
+  word-wrap: break-word;
+}
+.span2 {
+  font-size: x-small;
+  grid-column: span 2;
+}
+.l {
+  background: var(--L-color);
+}
+.lu {
+  background: var(--LU-color);
+}
+.s {
+  background: var(--S-color);
+}
+.sc {
+  background: var(--SC-color);
+}

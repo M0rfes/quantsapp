@@ -1,8 +1,8 @@
 export interface Res {
   readonly SYMBOL: string;
   readonly type: string;
-  readonly PRICE: string;
-  readonly OI: string;
-  readonly PRICE_CHANGE: string;
-  readonly OI_CHANGE: string;
+  readonly PRICE: number;
+  readonly OI: number;
+  readonly PRICE_CHANGE: number;
+  readonly OI_CHANGE: number;
 }

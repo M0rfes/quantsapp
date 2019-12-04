@@ -1,19 +1,20 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 1rem;
 }
 .subGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-width: 75px;
-  min-height: 75px;
+  min-width: 150px;
+  min-height: 150px;
+  padding: 0.5rem;
 }
 small {
-  font-size: xx-small;
   word-wrap: break-word;
 }
+
 .span2 {
-  font-size: x-small;
   grid-column: span 2;
 }
 .l {

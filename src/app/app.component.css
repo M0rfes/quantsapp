@@ -1,8 +1,16 @@
+main {
+  background-color: var(--BG-color);
+}
+
 .grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-column-gap: 1rem;
 }
-.heatMap {
+.grid div {
   height: 100vh;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
 }

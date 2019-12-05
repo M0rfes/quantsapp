@@ -1,9 +1,11 @@
 <main>
-  <div class="grid container-fluid">
-    <app-heat-map [res]="res"></app-heat-map>
-    <div>
-      <canvas id="ctx">{{ctx}}</canvas>
+    <div class="pie" >
+      <div>
+        <canvas id="ctx">{{ctx}}</canvas>
+      </div>
     </div>
-  </div>
+    <div class="heatMap" >
+      <app-heat-map [res]="res"></app-heat-map>
+    </div>
 </main>
 

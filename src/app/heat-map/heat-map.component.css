@@ -1,17 +1,20 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   grid-gap: 1rem;
 }
 .subGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-width: 150px;
-  min-height: 150px;
+  grid-template-columns: 2fr 1fr;
+  min-width: 16rem;
+  min-height: 16rem;
   padding: 0.5rem;
 }
-small {
-  word-wrap: break-word;
+
+p {
+  font-size: 2rem;
+  font-weight: bolder;
+  word-wrap: none;
 }
 
 .span2 {

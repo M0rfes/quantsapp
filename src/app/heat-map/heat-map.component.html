@@ -1,12 +1,13 @@
-<div class="grid">
+<div class="grid" >
   <div *ngFor="let r of res">
     <div class="subGrid " [ngClass]="r.type">
       <p class="span2">{{ r.SYMBOL }}</p>
-      <p class="span2"> {{ r.PRICE }}</p>
-      <p>% Price</p>
-      <p>{{ r.PRICE_CHANGE }} </p>
-      <p>% OI</p>
-      <p> {{ r.OI_CHANGE }}</p>
+      <p class="span2">{{ r.PRICE }}</p>
+      <p>% Price chg</p>
+      <p>{{ r.PRICE_CHANGE * 100 | number: '1.2-2' }}</p>
+      <p>% OI chg</p>
+      <p>{{ r.OI_CHANGE * 100 | number: '1.2-2' }}</p>
     </div>
   </div>
+  <div #end></div>
 </div>

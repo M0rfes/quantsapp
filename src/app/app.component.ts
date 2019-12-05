@@ -36,13 +36,19 @@ export class AppComponent implements OnInit, OnDestroy {
             },
           ],
 
-          labels: ['l', 'lu', 's', 'sc'],
+          labels: [
+            `L ${res.len_l}`,
+            `LU ${res.len_lu}`,
+            `S ${res.len_s}`,
+            `SC ${res.len_sc}`,
+          ],
         },
         options: {
           legend: {
             display: true,
             labels: {
               fontColor: '#ffffffff',
+              fontSize: 16,
             },
           },
         },

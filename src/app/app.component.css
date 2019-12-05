@@ -2,15 +2,16 @@ main {
   background-color: var(--BG-color);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-column-gap: 1rem;
+.pie {
+  width: 100vw;
+  height: 40vh;
+  overflow: hidden;
+  position: fixed;
+  background: var(--BG-color);
 }
-.grid div {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  position: sticky;
-  top: 0;
+.heatMap {
+  padding-top: 40vh;
+}
+.pie div {
+  width: 30rem;
 }

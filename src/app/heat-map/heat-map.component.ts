@@ -20,7 +20,9 @@ export class HeatMapComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {}
   ngAfterViewChecked(): void {
-    const { top, left } = this.end.nativeElement.getBoundingClientRect();
-    console.log(this.end, top, left);
+   setTimeout(()=> scrollBy({
+    top:16/3
+  }),1000)
+    console.log("s")
   }
 }

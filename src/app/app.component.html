@@ -1,11 +1,20 @@
-<main>
-    <div class="pie" >
+<header class="container-fluid">
+  <nav>
+    <div class="logo">
       <div>
-        <canvas id="ctx">{{ctx}}</canvas>
+        <img src="../assets/Icon-256.png" alt="QuantsAPP" />
       </div>
     </div>
-    <div class="heatMap" >
-      <app-heat-map [res]="res"></app-heat-map>
+    <div>
+      <h1 class="title">synopsis>>futures oi</h1>
     </div>
+    <div class="pie">
+      <canvas id="ctx">{{ ctx }}</canvas>
+    </div>
+  </nav>
+</header>
+<main class="container-fluid">
+  <div class="heatMap">
+    <app-heat-map [res]="res"></app-heat-map>
+  </div>
 </main>
-

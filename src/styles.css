@@ -6,3 +6,8 @@
   --SC-color: #ffff00;
   --BG-color: #2e5a78;
 }
+img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}

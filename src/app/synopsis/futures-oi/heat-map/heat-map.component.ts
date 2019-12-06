@@ -1,5 +1,6 @@
-import { Res } from './../interfaces/Res.type';
+import { Res } from '../../../../interfaces/Res.type';
 import { Component, OnInit, Input, AfterViewChecked } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-heat-map',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input, AfterViewChecked } from '@angular/core';
   styleUrls: ['./heat-map.component.css'],
 })
 export class HeatMapComponent implements OnInit, AfterViewChecked {
-  @Input() res: Res[];
+  @Input() stocks: BehaviorSubject<Res>;
   constructor() {}
   ngOnInit() {}
   ngAfterViewChecked(): void {
@@ -17,10 +18,7 @@ export class HeatMapComponent implements OnInit, AfterViewChecked {
           top: 1,
           behavior: 'smooth',
         }),
-      0,
+      2,
     );
-  }
-  scrolled() {
-    console.log('done');
   }
 }

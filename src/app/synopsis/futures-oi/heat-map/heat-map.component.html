@@ -1,11 +1,5 @@
-<div
-  class="grid"
-  infiniteScroll
-  [infiniteScrollDistance]="2"
-  [infiniteScrollThrottle]="50"
-  (scrolled)="scrolled()"
->
-  <div *ngFor="let r of res">
+<main>
+  <div *ngFor="let r of stocks | async">
     <div class="subGrid " [ngClass]="r.type">
       <p class="span2">{{ r.SYMBOL }}</p>
       <p class="span2">{{ r.PRICE }}</p>
@@ -15,4 +9,4 @@
       <p>{{ r.OI_CHANGE * 100 | number: '1.2-2' }}</p>
     </div>
   </div>
-</div>
+</main>

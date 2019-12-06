@@ -1,0 +1,42 @@
+main {
+  background-color: var(--BG-color);
+}
+header {
+  width: 100vw;
+  height: 40vh;
+  overflow: hidden;
+  background: var(--BG-color);
+  position: fixed;
+}
+nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.heatMap {
+  padding-top: 40vh;
+}
+nav .pie,
+nav .logo {
+  padding: 0;
+  margin: 0;
+}
+
+nav h1 {
+  color: #ffffff;
+  word-wrap: none;
+  justify-self: center;
+  align-self: center;
+}
+nav div {
+  text-align: center;
+  justify-self: center;
+}
+nav .pie {
+  justify-self: unset;
+}
+.logo {
+  width: 50%;
+}

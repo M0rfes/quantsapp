@@ -6,8 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeatMapComponent } from './futures-oi/heat-map/heat-map.component';
+import { SynopsisRoutingModule } from './synopsis-routing.module';
 @NgModule({
   declarations: [FuturesOIComponent, HeatMapComponent, FOVolumeComponent],
-  imports: [CommonModule, HttpClientModule, InfiniteScrollModule, NgbModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    InfiniteScrollModule,
+    NgbModule,
+    SynopsisRoutingModule,
+  ],
 })
 export class SynopsisModule {}

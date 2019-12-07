@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataService } from './data.service';
+import { FOVDataService } from './FOVData.service';
 
 describe('DataService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DataService = TestBed.get(DataService);
+    const service: FOVDataService = TestBed.get(FOVDataService);
     expect(service).toBeTruthy();
   });
 });

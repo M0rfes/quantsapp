@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as Chart from 'chart.js';
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { Res } from 'src/interfaces/Res.type';
-import { DataService } from './data.service';
+import { FOIDataService } from './FOIData.service';
 import { take, tap } from 'rxjs/operators';
 @Component({
   selector: 'app-futures-oi',
@@ -14,7 +14,7 @@ export class FuturesOIComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   ctx: Chart;
-  constructor(private readonly dataS: DataService) {}
+  constructor(private readonly dataS: FOIDataService) {}
 
   ngOnInit(): void {
     this.getData();

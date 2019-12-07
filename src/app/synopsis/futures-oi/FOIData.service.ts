@@ -7,7 +7,7 @@ import { Res } from 'src/interfaces/Res.type';
 @Injectable({
   providedIn: 'root',
 })
-export class DataService {
+export class FOIDataService {
   constructor(private readonly http: HttpClient) {}
 
   data(): Observable<

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import Result from '../../interfaces/Result.interface';
+import Result from '../../../interfaces/Result.interface';
 import { Observable } from 'rxjs';
 import { Res } from 'src/interfaces/Res.type';
 @Injectable({
@@ -14,7 +14,7 @@ export class DataService {
     [Res[], { len_l: number; len_lu: number; len_s: number; len_sc: number }]
   > {
     console.log('data');
-    return this.http.get<Result>(' http://localhost:3000/data').pipe(
+    return this.http.get<Result>(' http://localhost:3000/foi').pipe(
       map(res => [
         [
           ...this.dataToObjectWithType('l', res.l),
@@ -50,33 +50,3 @@ export class DataService {
       });
   }
 }
-// subscribe(res => {
-
-//   this.ctx = new Chart('ctx', {
-//     type: 'doughnut',
-//     data: {
-//       datasets: [
-//         {
-//           data: [],
-//           backgroundColor: ['#00ff00', '#00d0f9', '#ff0000', '#ffff00'],
-//         },
-//       ],
-
-//       labels: [
-//         `L ${res.len_l}`,
-//         `LU ${res.len_lu}`,
-//         `S ${res.len_s}`,
-//         `SC ${res.len_sc}`,
-//       ],
-//     },
-//     options: {
-//       legend: {
-//         display: true,
-//         labels: {
-//           fontColor: '#ffffffff',
-//           fontSize: 16,
-//         },
-//       },
-//     },
-//   });
-// });

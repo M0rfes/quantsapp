@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as Chart from 'chart.js';
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { Res } from 'src/interfaces/Res.type';
-import { DataService } from '../data.service';
+import { DataService } from './data.service';
 import { take, tap } from 'rxjs/operators';
 @Component({
   selector: 'app-futures-oi',

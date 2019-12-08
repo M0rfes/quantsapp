@@ -3,7 +3,7 @@ import { FOVDataService } from './FOVData.service';
 @Component({
   selector: 'app-fovolume',
   templateUrl: './fovolume.component.html',
-  styleUrls: ['./fovolume.component.css'],
+  styleUrls: ['./fovolume.component.scss'],
 })
 export class FOVolumeComponent implements OnInit {
   data: any;

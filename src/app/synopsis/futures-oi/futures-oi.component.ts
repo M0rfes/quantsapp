@@ -1,19 +1,29 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import * as Chart from 'chart.js';
 import { Subscription, BehaviorSubject } from 'rxjs';
-import { Res } from 'src/interfaces/Res.type';
+import { FOIRes } from 'src/app/synopsis/futures-oi/interfaces/FOIRes.type';
 import { FOIDataService } from './FOIData.service';
 import { take, tap } from 'rxjs/operators';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 @Component({
   selector: 'app-futures-oi',
   templateUrl: './futures-oi.component.html',
-  styleUrls: ['./futures-oi.component.css'],
+  styleUrls: ['./futures-oi.component.scss'],
 })
-export class FuturesOIComponent implements OnInit, OnDestroy {
-  readonly stocks = new BehaviorSubject<Res[]>([]);
+export class FuturesOIComponent implements OnInit, OnDestroy, AfterViewInit {
+  readonly stocks = new BehaviorSubject<FOIRes[]>([]);
   subscription: Subscription;
-
+  @ViewChild(CdkVirtualScrollViewport, { static: false })
+  vs: CdkVirtualScrollViewport;
   ctx: Chart;
+  offSet = 10;
+  anmiationId: number;
   constructor(private readonly dataS: FOIDataService) {}
 
   ngOnInit(): void {
@@ -56,8 +66,20 @@ export class FuturesOIComponent implements OnInit, OnDestroy {
       )
       .subscribe();
   }
+  log() {
+    console.log('vsEnd');
+  }
+
+  ngAfterViewInit(): void {
+    const scroll = () => {
+      this.anmiationId = requestAnimationFrame(scroll);
+      this.vs.scrollToOffset(this.offSet++, 'smooth');
+    };
+    scroll();
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    cancelAnimationFrame(this.anmiationId);
   }
 }

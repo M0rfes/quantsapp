@@ -1,5 +1,5 @@
 <main>
-  <div *ngFor="let r of stocks | async">
+  <div *cdkVirtualFor="let r of stocks | async">
     <div class="subGrid " [ngClass]="r.type">
       <p class="span2">{{ r.SYMBOL }}</p>
       <p class="span2">{{ r.PRICE }}</p>

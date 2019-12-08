@@ -1,4 +1,4 @@
-export default interface Result {
+export default interface FOIResult {
   readonly status: string;
   readonly len_l: string;
   readonly data_time: string;

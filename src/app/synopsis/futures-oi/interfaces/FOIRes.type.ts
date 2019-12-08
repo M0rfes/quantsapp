@@ -1,4 +1,4 @@
-export interface Res {
+export interface FOIRes {
   readonly SYMBOL: string;
   readonly type: string;
   readonly PRICE: number;

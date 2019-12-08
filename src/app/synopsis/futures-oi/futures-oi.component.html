@@ -13,12 +13,8 @@
 </header>
 <main class="container-fluid">
   <div class="heatMap ">
-    <app-heat-map [stocks]="stocks"></app-heat-map>
+    <cdk-virtual-scroll-viewport itemSize="16*16">
+      <app-heat-map [stocks]="stocks"></app-heat-map>
+    </cdk-virtual-scroll-viewport>
   </div>
-  <div
-    infiniteScroll
-    [infiniteScrollDistance]="2"
-    [infiniteScrollThrottle]="50"
-    (scrolled)="getData()"
-  ></div>
 </main>

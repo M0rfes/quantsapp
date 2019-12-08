@@ -1,24 +1,27 @@
-import { Res } from '../../../../interfaces/Res.type';
-import { Component, OnInit, Input, AfterViewChecked } from '@angular/core';
+import { FOIRes } from '../interfaces/FOIRes.type';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import {
+  Component,
+  OnInit,
+  Input,
+  AfterViewChecked,
+  OnDestroy,
+  ViewChild,
+  AfterViewInit,
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-heat-map',
   templateUrl: './heat-map.component.html',
-  styleUrls: ['./heat-map.component.css'],
+  styleUrls: ['./heat-map.component.scss'],
 })
-export class HeatMapComponent implements OnInit, AfterViewChecked {
-  @Input() stocks: BehaviorSubject<Res>;
+export class HeatMapComponent implements OnInit, OnDestroy {
+  @Input() stocks: BehaviorSubject<FOIRes[]>;
+  timer: any;
   constructor() {}
   ngOnInit() {}
-  ngAfterViewChecked(): void {
-    setTimeout(
-      () =>
-        scrollBy({
-          top: 1,
-          behavior: 'smooth',
-        }),
-      2,
-    );
+  ngOnDestroy(): void {
+    clearTimeout(this.timer);
   }
 }

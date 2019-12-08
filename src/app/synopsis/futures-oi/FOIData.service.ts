@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import Result from '../../../interfaces/Result.interface';
+import FOIResult from './interfaces/FOIResult.interface';
 import { Observable } from 'rxjs';
-import { Res } from 'src/interfaces/Res.type';
+import { FOIRes } from 'src/app/synopsis/futures-oi/interfaces/FOIRes.type';
 @Injectable({
   providedIn: 'root',
 })
@@ -11,10 +11,10 @@ export class FOIDataService {
   constructor(private readonly http: HttpClient) {}
 
   data(): Observable<
-    [Res[], { len_l: number; len_lu: number; len_s: number; len_sc: number }]
+    [FOIRes[], { len_l: number; len_lu: number; len_s: number; len_sc: number }]
   > {
     console.log('data');
-    return this.http.get<Result>(' http://localhost:3000/foi').pipe(
+    return this.http.get<FOIResult>(' http://localhost:3000/foi').pipe(
       map(res => [
         [
           ...this.dataToObjectWithType('l', res.l),

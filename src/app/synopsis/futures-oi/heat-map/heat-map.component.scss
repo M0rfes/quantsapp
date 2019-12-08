@@ -27,8 +27,10 @@ p {
 .sc {
   background: var(--SC-color);
 }
+
 main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   grid-gap: 1rem;
+  padding: 0 0.5rem;
 }

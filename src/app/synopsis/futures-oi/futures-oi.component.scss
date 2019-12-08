@@ -7,6 +7,7 @@ header {
   overflow: hidden;
   background: var(--BG-color);
   position: fixed;
+  z-index: 1;
 }
 nav {
   display: grid;
@@ -40,4 +41,12 @@ nav .pie {
 }
 .logo {
   width: 50%;
+}
+cdk-virtual-scroll-viewport {
+  top: -40;
+  height: 60vh;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

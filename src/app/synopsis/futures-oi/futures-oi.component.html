@@ -13,7 +13,9 @@
 </header>
 <main class="container-fluid">
   <div class="heatMap ">
-    <cdk-virtual-scroll-viewport itemSize="16*16">
+    <!-- TODO smoother scroll  -->
+    <!-- TODO cdk hight error -->
+    <cdk-virtual-scroll-viewport itemSize="365">
       <app-heat-map [stocks]="stocks"></app-heat-map>
     </cdk-virtual-scroll-viewport>
   </div>

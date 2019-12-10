@@ -17,7 +17,7 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./heat-map.component.scss'],
 })
 export class HeatMapComponent implements OnInit, OnDestroy {
-  @Input() stocks: BehaviorSubject<FOIRes[]>;
+  @Input() stocks: BehaviorSubject<[FOIRes, FOIRes, FOIRes, FOIRes][]>;
   timer: any;
   constructor() {}
   ngOnInit() {}

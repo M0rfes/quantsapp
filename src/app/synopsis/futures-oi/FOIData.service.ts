@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import FOIResult from './interfaces/FOIResult.interface';
-import { Observable } from 'rxjs';
 import { FOIRes } from 'src/app/synopsis/futures-oi/interfaces/FOIRes.type';
 @Injectable({
   providedIn: 'root',
@@ -10,28 +9,34 @@ import { FOIRes } from 'src/app/synopsis/futures-oi/interfaces/FOIRes.type';
 export class FOIDataService {
   constructor(private readonly http: HttpClient) {}
 
-  data(): Observable<
-    [FOIRes[], { len_l: number; len_lu: number; len_s: number; len_sc: number }]
-  > {
-    console.log('data');
-    return this.http.get<FOIResult>(' http://localhost:3000/foi').pipe(
-      map(res => [
-        [
-          ...this.dataToObjectWithType('l', res.l),
-          ...this.dataToObjectWithType('lu', res.lu),
-          ...this.dataToObjectWithType('s', res.s),
-          ...this.dataToObjectWithType('sc', res.sc),
-        ].sort(({ PRICE_CHANGE: apc }, { PRICE_CHANGE: bpc }) =>
-          +apc > +bpc ? -1 : 1,
-        ),
-        {
-          len_l: +res.len_l,
-          len_lu: +res.len_lu,
-          len_s: +res.len_s,
-          len_sc: +res.len_sc,
-        },
-      ]),
-    );
+  data() {
+    return this.http
+      .get<FOIResult>(' http://localhost:3000/foi')
+      .pipe(map(this.processData.bind(this)), map(this.finalResult.bind(this)));
+  }
+
+  private processData(
+    res: FOIResult,
+  ): [
+    FOIRes[],
+    { len_l: number; len_lu: number; len_s: number; len_sc: number },
+  ] {
+    return [
+      [
+        ...this.dataToObjectWithType('l', res.l),
+        ...this.dataToObjectWithType('lu', res.lu),
+        ...this.dataToObjectWithType('s', res.s),
+        ...this.dataToObjectWithType('sc', res.sc),
+      ].sort(({ PRICE_CHANGE: apc }, { PRICE_CHANGE: bpc }) =>
+        +apc > +bpc ? -1 : 1,
+      ),
+      {
+        len_l: +res.len_l,
+        len_lu: +res.len_lu,
+        len_s: +res.len_s,
+        len_sc: +res.len_sc,
+      },
+    ];
   }
   private dataToObjectWithType(type: string, data: string) {
     return data
@@ -48,5 +53,22 @@ export class FOIDataService {
           OI_CHANGE: +OI_CHANGE,
         };
       });
+  }
+  private finalResult([r, data]: [
+    FOIRes[],
+    { len_l: number; len_lu: number; len_s: number; len_sc: number },
+  ]) {
+    return [data, this.batchFour(r)];
+  }
+
+  private batchFour(
+    [f, s, t, fr, ...rest]: FOIRes[],
+    ans: [FOIRes, FOIRes, FOIRes, FOIRes][] = [],
+  ): [FOIRes, FOIRes, FOIRes, FOIRes][] {
+    if (rest.length === 0) {
+      return [...ans, [f, s, t, fr]];
+    } else {
+      return this.batchFour(rest, [...ans, [f, s, t, fr]]);
+    }
   }
 }

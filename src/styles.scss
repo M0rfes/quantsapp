@@ -4,7 +4,8 @@
   --S-color: #ff0000;
   --LU-color: #00d0f9;
   --SC-color: #ffff00;
-  --BG-color: #2e5a78;
+  --BG-color: rgb(4, 16, 33);
+  --FG-color: rgba(248, 248, 248, 0.1);
 }
 img {
   display: block;
@@ -12,5 +13,12 @@ img {
   width: 100%;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background: var(--BG-color);
+}

@@ -10,6 +10,7 @@ import { Subscription, BehaviorSubject } from 'rxjs';
 import { FOIRes } from 'src/app/synopsis/futures-oi/interfaces/FOIRes.type';
 import { FOIDataService } from './FOIData.service';
 import { take, tap } from 'rxjs/operators';
+import { TimerObservable } from 'rxjs/observable/TimerObservable';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 @Component({
   selector: 'app-futures-oi',
@@ -17,23 +18,28 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
   styleUrls: ['./futures-oi.component.scss'],
 })
 export class FuturesOIComponent implements OnInit, OnDestroy, AfterViewInit {
-  readonly stocks = new BehaviorSubject<FOIRes[]>([]);
-  subscription: Subscription;
   @ViewChild(CdkVirtualScrollViewport, { static: false })
   vs: CdkVirtualScrollViewport;
+  readonly stocks = new BehaviorSubject<[FOIRes, FOIRes, FOIRes, FOIRes][]>([]);
+  subscription: Subscription;
+  refreshSub: Subscription;
   ctx: Chart;
-  offSet = 10;
-  anmiationId: number;
+  offSet = 5;
+  private animationId: number;
+
   constructor(private readonly dataS: FOIDataService) {}
 
   ngOnInit(): void {
-    this.getData();
+    // TODO: Find a better API
+    this.refreshSub = TimerObservable.create(0, 1000 * 60 * 5).subscribe(
+      this.getData.bind(this),
+    );
   }
-  getData() {
+  private getData() {
     this.subscription = this.dataS
       .data()
       .pipe(
-        tap(([r, data]) => {
+        tap(([data, r]) => {
           this.ctx = new Chart('ctx', {
             type: 'doughnut',
             data: {
@@ -55,7 +61,7 @@ export class FuturesOIComponent implements OnInit, OnDestroy, AfterViewInit {
                 display: true,
                 labels: {
                   fontColor: '#ffffffff',
-                  fontSize: 16,
+                  fontSize: 32,
                 },
               },
             },
@@ -66,20 +72,22 @@ export class FuturesOIComponent implements OnInit, OnDestroy, AfterViewInit {
       )
       .subscribe();
   }
-  log() {
-    console.log('vsEnd');
-  }
 
   ngAfterViewInit(): void {
     const scroll = () => {
-      this.anmiationId = requestAnimationFrame(scroll);
+      this.animationId = requestAnimationFrame(scroll);
       this.vs.scrollToOffset(this.offSet++, 'smooth');
+      scrollBy({
+        top: 1,
+        behavior: 'smooth',
+      });
     };
     scroll();
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    cancelAnimationFrame(this.anmiationId);
+    this.refreshSub.unsubscribe();
+    cancelAnimationFrame(this.animationId);
   }
 }

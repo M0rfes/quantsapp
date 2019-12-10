@@ -2,8 +2,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   min-width: 16rem;
-  min-height: 16rem;
-  padding: 0.5rem;
+  height: 16rem;
 }
 
 p {
@@ -30,7 +29,9 @@ p {
 
 main {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  // grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
-  padding: 0 0.5rem;
+  // border: rebeccapurple solid 2px;
+  margin: 1rem;
 }

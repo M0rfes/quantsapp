@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeatMapComponent } from './futures-oi/heat-map/heat-map.component';
 import { SynopsisRoutingModule } from './synopsis-routing.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [FuturesOIComponent, HeatMapComponent, FOVolumeComponent],
   imports: [
@@ -13,6 +14,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     HttpClientModule,
     SynopsisRoutingModule,
     ScrollingModule,
+    MatCardModule,
   ],
 })
 export class SynopsisModule {}

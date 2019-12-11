@@ -15,10 +15,10 @@ import {
 export class FOVolumeComponent implements OnInit {
   mostTradedFutures: MostTradedFuture[];
   mostTradedIndexCallOptions: MostTradedIndexCallOption[];
-  MostTradedIndexPutOptions: MostTradedIndexCallOption[];
-  MostTradedStockCallOptions: MostTradedIndexCallOption[];
-  MostTradedStockPutOptions: MostTradedIndexCallOption[];
-  MostTradedLeaps: MostTradedLeap[];
+  mostTradedIndexPutOptions: MostTradedIndexCallOption[];
+  mostTradedStockCallOptions: MostTradedIndexCallOption[];
+  mostTradedStockPutOptions: MostTradedIndexCallOption[];
+  mostTradedLeaps: MostTradedLeap[];
   constructor(private readonly fOVDataS: FOVDataService) {}
 
   ngOnInit() {
@@ -30,31 +30,26 @@ export class FOVolumeComponent implements OnInit {
             this.mostTradedFutures = r['Most Traded Futures'];
             return;
           case Headers.MostTradedLeaps:
-            this.MostTradedLeaps = r['Most Traded Leaps'];
+            this.mostTradedLeaps = r['Most Traded Leaps'];
             return;
           case Headers.MostTradedStockCallOptions:
-            this.MostTradedStockCallOptions =
-              r['Most Traded Index Call Options'];
+            this.mostTradedStockCallOptions =
+              r['Most Traded Stock Call Options'];
             return;
           case Headers.MostTradedStockPutOptions:
-            this.MostTradedStockPutOptions = r['Most Traded Stock Put Options'];
+            this.mostTradedStockPutOptions = r['Most Traded Stock Put Options'];
             return;
           case Headers.MostTradedIndexCallOptions:
             this.mostTradedIndexCallOptions =
               r['Most Traded Index Call Options'];
             return;
           case Headers.MostTradedIndexPutOptions:
-            this.MostTradedIndexPutOptions = r['Most Traded Stock Put Options'];
+            this.mostTradedIndexPutOptions = r['Most Traded Index Put Options'];
             return;
           default:
             console.error('API changed');
         }
       });
-      console.log(this.mostTradedFutures);
     });
-  }
-
-  priceChange(pc: string) {
-    return +pc * 100;
   }
 }

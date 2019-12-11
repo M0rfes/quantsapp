@@ -1,0 +1,55 @@
+<mat-card class="title-bar">
+  <mat-card-title class="grid-title">
+    {{ title }}
+  </mat-card-title>
+</mat-card>
+<div class="grid">
+  <mat-card *ngFor="let f of stocks">
+    <mat-card-title class="symbol">
+      {{ f.symbol }}
+    </mat-card-title>
+    <mat-card-subtitle>{{ f.expiry }}</mat-card-subtitle>
+    <mat-card-content class="subGrid">
+      <div>
+        <small>
+          strike
+        </small>
+        <p>
+          {{ f.strike }}
+        </p>
+      </div>
+      <div>
+        <small>
+          price
+        </small>
+        <p>
+          {{ f.ltp }}
+        </p>
+      </div>
+      <div>
+        <small>
+          VOL. Lost
+        </small>
+        <p>
+          {{ f.volume_lots }}
+        </p>
+      </div>
+      <div>
+        <small>
+          OI (%)
+        </small>
+        <p>
+          {{ f.oic }}
+        </p>
+      </div>
+      <div>
+        <small>
+          Price(%)
+        </small>
+        <p [ngStyle]="{ color: priceChangeColor(f.pc) }">
+          {{ priceChange(f.pc) | number: '1.2-2' }}
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

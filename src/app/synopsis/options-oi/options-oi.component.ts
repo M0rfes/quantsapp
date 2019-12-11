@@ -1,9 +1,16 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  AfterViewInit,
+  ViewChild,
+} from '@angular/core';
 import { OOIDataService } from './ooidata.service';
-import { LongCall, OOIRes } from './interfaces/OOIRes.interface';
-import { Headers } from './interfaces/OOIRes.interface';
-import { Subscription } from 'rxjs';
+import { OOIRes } from './interfaces/OOIRes.interface';
+import { Subscription, Observable, BehaviorSubject } from 'rxjs';
 import { TimerObservable } from 'rxjs/observable/TimerObservable';
+import { tap, take } from 'rxjs/operators';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-options-oi',
@@ -11,16 +18,12 @@ import { TimerObservable } from 'rxjs/observable/TimerObservable';
   styleUrls: ['./options-oi.component.scss'],
 })
 export class OptionsOIComponent implements OnInit, AfterViewInit, OnDestroy {
-  shortCall: LongCall[];
-  shortPut: LongCall[];
-  shortCoveringCall: LongCall[];
-  shortCoveringPut: LongCall[];
-  longUnwindingPut: LongCall[];
-  longUnwindingCall: LongCall[];
-  longPut: LongCall[];
-  longCall: LongCall[];
   subscription: Subscription;
-  animationId: number;
+  private animationId: number;
+  stocks = new BehaviorSubject<OOIRes[]>([]);
+  offSet = 1;
+  @ViewChild(CdkVirtualScrollViewport, { static: false })
+  vs: CdkVirtualScrollViewport;
   constructor(private readonly ooiDataS: OOIDataService) {}
 
   ngOnInit() {
@@ -29,54 +32,30 @@ export class OptionsOIComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
   private getData() {
-    scroll(0, 0);
-    this.subscription.add(
-      this.ooiDataS.data().subscribe((res: OOIRes[]) => {
-        res.forEach(d => {
-          const [head] = Object.keys(d);
-          switch (head) {
-            case Headers.LongCall:
-              this.longCall = d['Long Call'];
-              return;
-            case Headers.LongPut:
-              this.longPut = d['Long Put'];
-              return;
-            case Headers.ShortCall:
-              this.shortCall = d['Short Call'];
-              return;
-            case Headers.ShortPut:
-              this.shortPut = d['Short Put'];
-              return;
-            case Headers.ShortCoveringCall:
-              this.shortCoveringCall = d['Short-Covering Call'];
-              return;
-            case Headers.ShortCoveringPut:
-              this.shortCoveringPut = d['Short-Covering Put'];
-              return;
-            case Headers.LongUnwindingCall:
-              this.longUnwindingCall = d['Long-Unwinding Call'];
-              return;
-            case Headers.LongUnwindingPut:
-              this.longUnwindingPut = d['Long-Unwinding Put'];
-              return;
-            default:
-              console.error('API Changed');
-          }
-        });
-      }),
-    );
+    this.subscription = this.ooiDataS
+      .data()
+      .pipe(
+        tap(data => {
+          this.stocks.next([...this.stocks.getValue(), ...data]);
+        }),
+        take(1),
+      )
+      .subscribe();
   }
+
   ngAfterViewInit(): void {
-    const autoScroll = () => {
-      this.animationId = requestAnimationFrame(autoScroll);
+    const scroll = () => {
+      this.animationId = requestAnimationFrame(scroll);
+      this.vs.scrollToOffset(this.offSet++, 'smooth');
       scrollBy({
         top: 1,
         behavior: 'smooth',
       });
     };
-    autoScroll();
+    scroll();
   }
   ngOnDestroy(): void {
+    cancelAnimationFrame(this.animationId);
     this.subscription.unsubscribe();
   }
 }

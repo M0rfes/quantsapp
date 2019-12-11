@@ -13,10 +13,8 @@
 </header>
 <main class="container-fluid">
   <div class="heatMap ">
-    <!-- TODO smoother scroll  -->
-    <!-- TODO cdk hight error -->
-    <cdk-virtual-scroll-viewport itemSize="365">
-      <app-heat-map [stocks]="stocks"></app-heat-map>
+    <cdk-virtual-scroll-viewport itemSize="400">
+      <app-heat-map [stocks]="stocks" *ngIf="render"></app-heat-map>
     </cdk-virtual-scroll-viewport>
   </div>
 </main>

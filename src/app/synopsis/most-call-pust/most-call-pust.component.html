@@ -4,13 +4,13 @@
   </mat-card-title>
 </mat-card>
 <div class="grid">
-  <mat-card *ngFor="let f of stocks">
+  <mat-card *ngFor="let f of data">
     <mat-card-title class="symbol">
       {{ f.symbol }}
     </mat-card-title>
     <mat-card-subtitle>{{ f.expiry }}</mat-card-subtitle>
     <mat-card-content class="subGrid">
-      <div>
+      <div *ngIf="f.strike">
         <small>
           strike
         </small>

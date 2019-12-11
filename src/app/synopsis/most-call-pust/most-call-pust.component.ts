@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MostTradedIndexCallOption } from '../fovolume/interfaces/FOVRes.interface';
+import {
+  MostTradedIndexCallOption,
+  FOVRes,
+} from '../fovolume/interfaces/FOVRes.interface';
+import { OOIRes } from '../options-oi/interfaces/OOIRes.interface';
 
 @Component({
   selector: 'app-most-call-pust',
@@ -7,11 +11,16 @@ import { MostTradedIndexCallOption } from '../fovolume/interfaces/FOVRes.interfa
   styleUrls: ['./most-call-pust.component.scss'],
 })
 export class MostCallPustComponent implements OnInit {
-  @Input() stocks: MostTradedIndexCallOption[];
-  @Input() title: string;
+  @Input() stocks: FOVRes & OOIRes;
+  title: string;
+  data: MostTradedIndexCallOption;
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const [[title, data]] = Object.entries(this.stocks);
+    this.title = title;
+    this.data = data;
+  }
   priceChange(pc: string) {
     return +pc * 100;
   }

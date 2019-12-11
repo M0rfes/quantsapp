@@ -1,37 +1,7 @@
-<main>
-  <!-- Long Call -->
-  <app-most-call-pust
-    [stocks]="longCall"
-    title="Long Call"
-  ></app-most-call-pust>
-  <!-- Long Put -->
-  <app-most-call-pust [stocks]="longPut" title="Long Put"> </app-most-call-pust>
-  <!-- Short Call -->
-  <app-most-call-pust
-    [stocks]="shortCall"
-    title="Short call"
-  ></app-most-call-pust>
-  <!-- Short Put -->
-  <app-most-call-pust [stocks]="shortPut" title="Short Put">
-  </app-most-call-pust>
-  <!-- Long-Unwinding Call -->
-  <app-most-call-pust
-    [stocks]="longUnwindingCall"
-    title="Long-Unwinding Call"
-  ></app-most-call-pust>
-  <!-- Long-Unwinding put -->
-  <app-most-call-pust
-    [stocks]="longUnwindingPut"
-    title="Long-Unwinding Put"
-  ></app-most-call-pust>
-  <!-- Short-Covering Call -->
-  <app-most-call-pust
-    [stocks]="shortCoveringCall"
-    title="Short-Covering Call"
-  ></app-most-call-pust>
-  <!-- Short-Covering put -->
-  <app-most-call-pust
-    [stocks]="shortCoveringPut"
-    title="Short-Covering Put"
-  ></app-most-call-pust>
-</main>
+<cdk-virtual-scroll-viewport itemSize="1250">
+  <main>
+    <div *cdkVirtualFor="let item of stocks | async">
+      <app-most-call-pust [stocks]="item"></app-most-call-pust>
+    </div>
+  </main>
+</cdk-virtual-scroll-viewport>

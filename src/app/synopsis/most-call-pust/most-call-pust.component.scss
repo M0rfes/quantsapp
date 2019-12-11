@@ -3,7 +3,7 @@ $symbol: #f49c0f;
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 1rem;
   .subGrid {
     display: grid;
@@ -12,12 +12,6 @@ $symbol: #f49c0f;
     .symbol {
       grid-column: span 2;
     }
-  }
-}
-main {
-  padding: 0 1rem;
-  mat-card {
-    margin: 0.5rem 0;
   }
 }
 small {

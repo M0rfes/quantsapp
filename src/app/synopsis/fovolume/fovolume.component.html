@@ -1,31 +1,7 @@
-<main #main>
-  <!-- Most Traded Futures -->
-  <app-most-traded-futures
-    [mostTradedFutures]="mostTradedFutures"
-  ></app-most-traded-futures>
-  <!-- MostTraded Index Call Options -->
-  <app-most-call-pust
-    [stocks]="mostTradedIndexCallOptions"
-    title="MostTraded Index Call Options"
-  ></app-most-call-pust>
-  <!--  MostTraded Index Put Options -->
-  <app-most-call-pust
-    [stocks]="mostTradedIndexPutOptions"
-    title=" MostTraded Index Put Options"
-  ></app-most-call-pust>
-  <!-- MostTraded Stocks Call Options -->
-  <app-most-call-pust
-    [stocks]="mostTradedStockCallOptions"
-    title=" MostTraded Stocks Call Options"
-  ></app-most-call-pust>
-  <!--  MostTraded Stocks Put Options -->
-  <app-most-call-pust
-    [stocks]="mostTradedStockPutOptions"
-    title=" MostTraded Stocks Put Options"
-  ></app-most-call-pust>
-  <!-- Most Traded Leaps -->
-  <app-most-call-pust
-    [stocks]="mostTradedLeaps"
-    title="Most Traded Leaps"
-  ></app-most-call-pust>
-</main>
+<cdk-virtual-scroll-viewport itemSize="1250">
+  <main>
+    <div *cdkVirtualFor="let item of stocks | async">
+      <app-most-call-pust [stocks]="item"></app-most-call-pust>
+    </div>
+  </main>
+</cdk-virtual-scroll-viewport>

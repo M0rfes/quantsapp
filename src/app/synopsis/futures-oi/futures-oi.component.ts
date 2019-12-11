@@ -22,7 +22,6 @@ export class FuturesOIComponent implements OnInit, OnDestroy, AfterViewInit {
   vs: CdkVirtualScrollViewport;
   readonly stocks = new BehaviorSubject<[FOIRes, FOIRes, FOIRes, FOIRes][]>([]);
   subscription: Subscription;
-  refreshSub: Subscription;
   ctx: Chart;
   offSet = 5;
   private animationId: number;
@@ -31,46 +30,53 @@ export class FuturesOIComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     // TODO: Find a better API
-    this.refreshSub = TimerObservable.create(0, 1000 * 60 * 5).subscribe(
+    this.subscription = TimerObservable.create(0, 1000 * 60 * 5).subscribe(
       this.getData.bind(this),
     );
   }
   private getData() {
-    this.subscription = this.dataS
-      .data()
-      .pipe(
-        tap(([data, r]) => {
-          this.ctx = new Chart('ctx', {
-            type: 'doughnut',
-            data: {
-              datasets: [
-                {
-                  data: [data.len_l, data.len_lu, data.len_s, data.len_sc],
-                  backgroundColor: ['#00ff00', '#00d0f9', '#ff0000', '#ffff00'],
-                },
-              ],
-              labels: [
-                `L ${data.len_l}`,
-                `LU ${data.len_lu}`,
-                `S ${data.len_s}`,
-                `SC ${data.len_sc}`,
-              ],
-            },
-            options: {
-              legend: {
-                display: true,
-                labels: {
-                  fontColor: '#ffffffff',
-                  fontSize: 32,
+    this.subscription.add(
+      this.dataS
+        .data()
+        .pipe(
+          tap(([data, r]) => {
+            this.ctx = new Chart('ctx', {
+              type: 'doughnut',
+              data: {
+                datasets: [
+                  {
+                    data: [data.len_l, data.len_lu, data.len_s, data.len_sc],
+                    backgroundColor: [
+                      '#00ff00',
+                      '#00d0f9',
+                      '#ff0000',
+                      '#ffff00',
+                    ],
+                  },
+                ],
+                labels: [
+                  `L ${data.len_l}`,
+                  `LU ${data.len_lu}`,
+                  `S ${data.len_s}`,
+                  `SC ${data.len_sc}`,
+                ],
+              },
+              options: {
+                legend: {
+                  display: true,
+                  labels: {
+                    fontColor: '#ffffffff',
+                    fontSize: 32,
+                  },
                 },
               },
-            },
-          });
-          this.stocks.next([...this.stocks.getValue(), ...r]);
-        }),
-        take(1),
-      )
-      .subscribe();
+            });
+            this.stocks.next([...this.stocks.getValue(), ...r]);
+          }),
+          take(1),
+        )
+        .subscribe(),
+    );
   }
 
   ngAfterViewInit(): void {
@@ -87,7 +93,6 @@ export class FuturesOIComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.refreshSub.unsubscribe();
     cancelAnimationFrame(this.animationId);
   }
 }

@@ -12,7 +12,7 @@ export interface FOVResult {
   'Most Traded Index Call Options': MostTradedStockPutOptions;
 }
 
-export interface MostTradedFutures {
+interface MostTradedFutures {
   ltp: string[];
   symbol: string[];
   oic: string[];
@@ -21,7 +21,7 @@ export interface MostTradedFutures {
   volume_lots: string[];
 }
 
-export interface Headers {
+interface Headers {
   '0': string;
   '1': string;
   '2': string;
@@ -30,7 +30,7 @@ export interface Headers {
   '5': string;
 }
 
-export interface MostTradedLeaps {
+interface MostTradedLeaps {
   ltp: string[];
   symbol: string[];
   oic: string[];
@@ -41,7 +41,7 @@ export interface MostTradedLeaps {
   strike: string[];
 }
 
-export interface MostTradedStockPutOptions {
+interface MostTradedStockPutOptions {
   ltp: string[];
   symbol: string[];
   oic: string[];

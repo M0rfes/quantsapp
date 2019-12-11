@@ -9,7 +9,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatCardModule } from '@angular/material/card';
 import { MostTradedFuturesComponent } from './fovolume/most-traded-futures/most-traded-futures.component';
 
-import { MostCallPustComponent } from './fovolume/most-call-pust/most-call-pust.component';
+import { MostCallPustComponent } from './most-call-pust/most-call-pust.component';
+import { OptionsOIComponent } from './options-oi/options-oi.component';
 @NgModule({
   declarations: [
     FuturesOIComponent,
@@ -17,6 +18,7 @@ import { MostCallPustComponent } from './fovolume/most-call-pust/most-call-pust.
     FOVolumeComponent,
     MostTradedFuturesComponent,
     MostCallPustComponent,
+    OptionsOIComponent,
   ],
   imports: [
     CommonModule,

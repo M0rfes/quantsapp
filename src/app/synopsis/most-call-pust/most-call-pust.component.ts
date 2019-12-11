@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MostTradedIndexCallOption } from '../interfaces/FOVRes.interface';
+import { MostTradedIndexCallOption } from '../fovolume/interfaces/FOVRes.interface';
 
 @Component({
   selector: 'app-most-call-pust',

@@ -25,8 +25,6 @@ export class FuturesOIComponent implements OnInit, OnDestroy, AfterViewInit {
   ctx: Chart;
   offSet = 5;
   private animationId: number;
-  // FIXME
-  render = false;
 
   constructor(private readonly dataS: FOIDataService) {}
 
@@ -74,7 +72,6 @@ export class FuturesOIComponent implements OnInit, OnDestroy, AfterViewInit {
               },
             });
             this.stocks.next([...this.stocks.getValue(), ...r]);
-            this.render = true;
           }),
           take(1),
         )

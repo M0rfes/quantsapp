@@ -14,7 +14,11 @@
 <main class="container-fluid">
   <div class="heatMap ">
     <cdk-virtual-scroll-viewport itemSize="400">
-      <app-heat-map [stocks]="stocks" *ngIf="render"></app-heat-map>
+      <div>
+        <div *cdkVirtualFor="let item of stocks | async">
+          <app-heat-map [stocks]="item"></app-heat-map>
+        </div>
+      </div>
     </cdk-virtual-scroll-viewport>
   </div>
 </main>

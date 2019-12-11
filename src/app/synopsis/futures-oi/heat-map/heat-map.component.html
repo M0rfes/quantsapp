@@ -1,18 +1,14 @@
-<div>
-  <div *cdkVirtualFor="let item of stocks | async">
-    <main>
-      <mat-card *ngFor="let r of item; let i = index" [ngClass]="r.type">
-        <mat-card-title>
-          <p>{{ r.SYMBOL }}</p>
-        </mat-card-title>
-        <mat-card-content class="subGrid ">
-          <p class="span2">{{ r.PRICE }}</p>
-          <p>% Price chg</p>
-          <p>{{ r.PRICE_CHANGE * 100 | number: '1.2-2' }}</p>
-          <p>% OI chg</p>
-          <p>{{ r.OI_CHANGE * 100 | number: '1.2-2' }}</p>
-        </mat-card-content>
-      </mat-card>
-    </main>
-  </div>
-</div>
+<main>
+  <mat-card *ngFor="let r of stocks; let i = index" [ngClass]="r.type">
+    <mat-card-title>
+      <p>{{ r.SYMBOL }}</p>
+    </mat-card-title>
+    <mat-card-content class="subGrid ">
+      <p class="span2">{{ r.PRICE }}</p>
+      <p>% Price chg</p>
+      <p>{{ r.PRICE_CHANGE * 100 | number: '1.2-2' }}</p>
+      <p>% OI chg</p>
+      <p>{{ r.OI_CHANGE * 100 | number: '1.2-2' }}</p>
+    </mat-card-content>
+  </mat-card>
+</main>

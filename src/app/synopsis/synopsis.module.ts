@@ -7,17 +7,15 @@ import { HeatMapComponent } from './futures-oi/heat-map/heat-map.component';
 import { SynopsisRoutingModule } from './synopsis-routing.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatCardModule } from '@angular/material/card';
-import { MostTradedFuturesComponent } from './fovolume/most-traded-futures/most-traded-futures.component';
 
-import { MostCallPustComponent } from './most-call-pust/most-call-pust.component';
+import { MostCallPutComponent } from './most-call-put/most-call-put.component';
 import { OptionsOIComponent } from './options-oi/options-oi.component';
 @NgModule({
   declarations: [
     FuturesOIComponent,
     HeatMapComponent,
     FOVolumeComponent,
-    MostTradedFuturesComponent,
-    MostCallPustComponent,
+    MostCallPutComponent,
     OptionsOIComponent,
   ],
   imports: [

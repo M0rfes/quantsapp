@@ -6,11 +6,11 @@ import {
 import { OOIRes } from '../options-oi/interfaces/OOIRes.interface';
 
 @Component({
-  selector: 'app-most-call-pust',
-  templateUrl: './most-call-pust.component.html',
-  styleUrls: ['./most-call-pust.component.scss'],
+  selector: 'app-most-call-put',
+  templateUrl: './most-call-put.component.html',
+  styleUrls: ['./most-call-put.component.scss'],
 })
-export class MostCallPustComponent implements OnInit {
+export class MostCallPutComponent implements OnInit {
   @Input() stocks: FOVRes & OOIRes;
   title: string;
   data: MostTradedIndexCallOption;

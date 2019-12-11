@@ -1,20 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MostCallPustComponent } from './most-call-pust.component';
+import { MostCallPutComponent } from './most-call-put.component';
 
 describe('MostCallPustComponent', () => {
-  let component: MostCallPustComponent;
-  let fixture: ComponentFixture<MostCallPustComponent>;
+  let component: MostCallPutComponent;
+  let fixture: ComponentFixture<MostCallPutComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MostCallPustComponent ]
-    })
-    .compileComponents();
+      declarations: [MostCallPutComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MostCallPustComponent);
+    fixture = TestBed.createComponent(MostCallPutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

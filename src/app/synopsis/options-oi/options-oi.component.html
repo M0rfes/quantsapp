@@ -1,7 +1,2 @@
-<cdk-virtual-scroll-viewport itemSize="1250">
-  <main>
-    <div *cdkVirtualFor="let item of stocks | async">
-      <app-most-call-put [stocks]="item"></app-most-call-put>
-    </div>
-  </main>
-</cdk-virtual-scroll-viewport>
+<app-nav src="../../../assets/splash_logo.png" title="options IO"></app-nav>
+<app-stocks-grid [data]="data"></app-stocks-grid>

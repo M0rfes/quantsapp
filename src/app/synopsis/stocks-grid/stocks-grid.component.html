@@ -1,0 +1,7 @@
+<cdk-virtual-scroll-viewport itemSize="1248">
+  <main>
+    <div *cdkVirtualFor="let item of stocks | async">
+      <app-most-call-put [stocks]="item"></app-most-call-put>
+    </div>
+  </main>
+</cdk-virtual-scroll-viewport>

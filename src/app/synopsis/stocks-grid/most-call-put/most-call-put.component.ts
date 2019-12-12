@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import {
   MostTradedIndexCallOption,
   FOVRes,
-} from '../fovolume/interfaces/FOVRes.interface';
-import { OOIRes } from '../options-oi/interfaces/OOIRes.interface';
+} from '../../fovolume/interfaces/FOVRes.interface';
+import { OOIRes } from '../../options-oi/interfaces/OOIRes.interface';
 
 @Component({
   selector: 'app-most-call-put',

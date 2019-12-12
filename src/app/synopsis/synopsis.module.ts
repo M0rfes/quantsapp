@@ -8,8 +8,10 @@ import { SynopsisRoutingModule } from './synopsis-routing.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatCardModule } from '@angular/material/card';
 
-import { MostCallPutComponent } from './most-call-put/most-call-put.component';
+import { MostCallPutComponent } from './stocks-grid/most-call-put/most-call-put.component';
 import { OptionsOIComponent } from './options-oi/options-oi.component';
+import { NavComponent } from './nav/nav.component';
+import { StocksGridComponent } from './stocks-grid/stocks-grid.component';
 @NgModule({
   declarations: [
     FuturesOIComponent,
@@ -17,6 +19,8 @@ import { OptionsOIComponent } from './options-oi/options-oi.component';
     FOVolumeComponent,
     MostCallPutComponent,
     OptionsOIComponent,
+    NavComponent,
+    StocksGridComponent,
   ],
   imports: [
     CommonModule,

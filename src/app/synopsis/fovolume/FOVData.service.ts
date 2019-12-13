@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { FOVResult } from './interfaces/FOVResult.interface';
+import zipMap from 'src/utils/zipMap';
 @Injectable({
   providedIn: 'root',
 })
@@ -21,7 +22,7 @@ export class FOVDataService {
     const helper = vs =>
       Object.entries(vs)
         .map(([h, t]: [string, string[]]) => t.map(v => ({ [h]: v })))
-        .reduce((p, c) => p.map((p1, i) => ({ ...p1, ...c[i] })));
+        .reduce(zipMap);
     return Object.entries(d).map(([type, v1]) => ({ [type]: helper(v1) }));
   }
 }

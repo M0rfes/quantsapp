@@ -1,0 +1,7 @@
+POST https://api.quantsapp.in/app_api/cp-built
+
+{
+    "expiry": "26-Dec-19",
+    "user_id": "109066",
+    "token": "729"
+}

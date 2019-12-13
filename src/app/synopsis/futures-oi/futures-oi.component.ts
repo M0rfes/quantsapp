@@ -30,7 +30,7 @@ export class FuturesOIComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     // TODO: Find a better API
-    this.subscription = TimerObservable.create(0, 1000 * 60 * 5).subscribe(
+    this.subscription = TimerObservable.create(0, 1000 * 60 * 1).subscribe(
       this.getData.bind(this),
     );
   }

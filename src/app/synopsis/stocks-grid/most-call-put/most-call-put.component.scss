@@ -14,9 +14,6 @@ $symbol: #f49c0f;
     }
   }
 }
-small {
-  text-transform: uppercase;
-}
 
 .title-bar {
   background: $title-bar;
@@ -41,6 +38,7 @@ mat-card-subtitle,
 small {
   font-size: 1.5rem;
   color: rgba($color: #ffffff, $alpha: 0.5);
+  text-transform: uppercase;
 }
 p {
   font-size: 2rem;

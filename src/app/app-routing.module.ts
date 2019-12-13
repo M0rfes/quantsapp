@@ -3,9 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'ot',
+    loadChildren: () =>
+      import('./option-triggers/option-triggers.module').then(
+        m => m.OptionTriggersModule,
+      ),
+  },
+  {
+    path: 'otr',
     loadChildren: () =>
       import('./synopsis/synopsis.module').then(m => m.SynopsisModule),
+    pathMatch: 'full',
   },
 ];
 

@@ -2,13 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { OOIResult } from './interfaces/OOIResult.interface';
 import { map } from 'rxjs/operators';
+import { EmitterService } from 'src/app/shared/emitter.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OOIDataService {
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly emitS: EmitterService,
+  ) {}
   data() {
+    return this.emitS.emitter<OOIResult[]>(this.fetchData.bind(this));
+  }
+  private fetchData() {
     return this.http
       .get<OOIResult>('http://localhost:3000/ooi')
       .pipe(map(this.dataFromReq), map(this.formate));

@@ -9,7 +9,7 @@ import * as Chart from 'chart.js';
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { FOIRes } from 'src/app/synopsis/futures-oi/interfaces/FOIRes.type';
 import { FOIDataService } from './FOIData.service';
-import { take, tap } from 'rxjs/operators';
+import { take, tap, map, startWith, switchMap } from 'rxjs/operators';
 import { TimerObservable } from 'rxjs/observable/TimerObservable';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 @Component({
@@ -29,54 +29,44 @@ export class FuturesOIComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(private readonly dataS: FOIDataService) {}
 
   ngOnInit(): void {
-    // TODO: Find a better API
-    this.subscription = TimerObservable.create(0, 1000 * 60 * 1).subscribe(
-      this.getData.bind(this),
-    );
+    this.subscription = this.getData();
   }
   private getData() {
-    this.subscription.add(
-      this.dataS
-        .data()
-        .pipe(
-          tap(([data, r]) => {
-            this.ctx = new Chart('ctx', {
-              type: 'doughnut',
-              data: {
-                datasets: [
-                  {
-                    data: [data.len_l, data.len_lu, data.len_s, data.len_sc],
-                    backgroundColor: [
-                      '#00ff00',
-                      '#00d0f9',
-                      '#ff0000',
-                      '#ffff00',
-                    ],
-                  },
-                ],
-                labels: [
-                  `L ${data.len_l}`,
-                  `LU ${data.len_lu}`,
-                  `S ${data.len_s}`,
-                  `SC ${data.len_sc}`,
-                ],
-              },
-              options: {
-                legend: {
-                  display: true,
-                  labels: {
-                    fontColor: '#ffffffff',
-                    fontSize: 32,
-                  },
+    return this.dataS
+      .data()
+      .pipe(
+        tap(([data, r]) => {
+          this.ctx = new Chart('ctx', {
+            type: 'doughnut',
+            data: {
+              datasets: [
+                {
+                  data: [data.len_l, data.len_lu, data.len_s, data.len_sc],
+                  backgroundColor: ['#00ff00', '#00d0f9', '#ff0000', '#ffff00'],
+                },
+              ],
+              labels: [
+                `L ${data.len_l}`,
+                `LU ${data.len_lu}`,
+                `S ${data.len_s}`,
+                `SC ${data.len_sc}`,
+              ],
+            },
+            options: {
+              legend: {
+                display: true,
+                labels: {
+                  fontColor: '#ffffffff',
+                  fontSize: 32,
                 },
               },
-            });
-            this.stocks.next([...this.stocks.getValue(), ...r]);
-          }),
-          take(1),
-        )
-        .subscribe(),
-    );
+            },
+          });
+          this.stocks.next([...this.stocks.getValue(), ...r]);
+        }),
+        take(1),
+      )
+      .subscribe();
   }
 
   ngAfterViewInit(): void {

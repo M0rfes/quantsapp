@@ -10,7 +10,6 @@ import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 import { FOVRes } from '../fovolume/interfaces/FOVRes.interface';
 import { OOIRes } from '../options-oi/interfaces/OOIRes.interface';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { OOIDataService } from '../options-oi/ooidata.service';
 import { TimerObservable } from 'rxjs/observable/TimerObservable';
 import { tap, take } from 'rxjs/operators';
 
@@ -30,12 +29,10 @@ export class StocksGridComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor() {}
 
   ngOnInit() {
-    this.subscription = TimerObservable.create(0, 1000 * 60 * 1).subscribe(
-      this.getData.bind(this),
-    );
+    this.subscription = this.getData();
   }
   private getData() {
-    this.subscription = this.data
+    return this.data
       .pipe(
         tap(data => {
           this.stocks.next([...this.stocks.getValue(), ...data] as any);

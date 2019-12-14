@@ -1,7 +1,7 @@
 main {
   & > div {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 0.5rem;
   }
   small {
@@ -39,5 +39,14 @@ header {
     color: rgba($color: #ffffff, $alpha: 0.5);
     background: rgba(248, 248, 248, 0.2);
     text-align: center;
+    mat-card-title {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
   }
+}
+img {
+  width: 10rem;
+  height: 10rem;
 }

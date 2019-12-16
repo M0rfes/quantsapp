@@ -1,16 +1,9 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ViewChild,
-  AfterViewInit,
-} from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import * as Chart from 'chart.js';
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { FOIRes } from 'src/app/synopsis/futures-oi/interfaces/FOIRes.type';
 import { FOIDataService } from './FOIData.service';
-import { take, tap, map, startWith, switchMap } from 'rxjs/operators';
-import { TimerObservable } from 'rxjs/observable/TimerObservable';
+import { take, tap } from 'rxjs/operators';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 @Component({
   selector: 'app-futures-oi',
@@ -21,7 +14,8 @@ export class FuturesOIComponent implements OnInit, OnDestroy {
   readonly stocks = new BehaviorSubject<[FOIRes, FOIRes, FOIRes, FOIRes][]>([]);
   subscription: Subscription;
   ctx: Chart;
-
+  @ViewChild(CdkVirtualScrollViewport, { static: false })
+  vs: CdkVirtualScrollViewport;
   constructor(private readonly dataS: FOIDataService) {}
 
   ngOnInit(): void {
@@ -64,7 +58,6 @@ export class FuturesOIComponent implements OnInit, OnDestroy {
       )
       .subscribe();
   }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

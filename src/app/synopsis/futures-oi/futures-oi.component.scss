@@ -18,6 +18,7 @@ nav {
 }
 .heatMap {
   padding-top: 40vh;
+  height: 60vh;
 }
 nav .pie,
 nav .logo {
@@ -43,7 +44,7 @@ nav .pie {
 .logo {
   width: 50%;
 }
-cdk-virtual-scroll-viewport {
+app-auto-scroll {
   top: -40;
   height: 60vh;
   -ms-overflow-style: none;

@@ -13,12 +13,17 @@
 </header>
 <main class="container-fluid">
   <div class="heatMap ">
-    <cdk-virtual-scroll-viewport itemSize="400">
-      <app-auto-scroll>
+    <!-- <cdk-virtual-scroll-viewport itemSize="400">
+      <div>
         <div *cdkVirtualFor="let item of stocks | async">
           <app-heat-map [stocks]="item"></app-heat-map>
         </div>
-      </app-auto-scroll>
-    </cdk-virtual-scroll-viewport>
+      </div>
+    </cdk-virtual-scroll-viewport> -->
+    <app-auto-scroll itemSize="400" [data]="stocks">
+      <ng-template let-item>
+        <app-heat-map [stocks]="item"></app-heat-map>
+      </ng-template>
+    </app-auto-scroll>
   </div>
 </main>

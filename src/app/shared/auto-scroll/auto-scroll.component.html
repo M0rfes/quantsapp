@@ -1,3 +1,10 @@
-<div>
-  <ng-content></ng-content>
-</div>
+<cdk-virtual-scroll-viewport itemSize="itemSize">
+  <div>
+    <div *cdkVirtualFor="let item of data | async">
+      <ng-template
+        [ngTemplateOutlet]="itemTemplate"
+        [ngTemplateOutletContext]="{ $implicit: item }"
+      ></ng-template>
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport>

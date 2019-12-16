@@ -1,7 +1,7 @@
-<cdk-virtual-scroll-viewport itemSize="1248">
-  <app-auto-scroll>
-    <div *cdkVirtualFor="let item of stocks | async">
+<div>
+  <app-auto-scroll itemSize="1248" [data]="stocks">
+    <ng-template let-item>
       <app-most-call-put [stocks]="item"></app-most-call-put>
-    </div>
+    </ng-template>
   </app-auto-scroll>
-</cdk-virtual-scroll-viewport>
+</div>

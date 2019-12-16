@@ -1,16 +1,8 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  ViewChild,
-  AfterViewInit,
-  OnDestroy,
-} from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 import { FOVRes } from '../fovolume/interfaces/FOVRes.interface';
 import { OOIRes } from '../options-oi/interfaces/OOIRes.interface';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { TimerObservable } from 'rxjs/observable/TimerObservable';
 import { tap, take } from 'rxjs/operators';
 
 @Component({
@@ -20,8 +12,10 @@ import { tap, take } from 'rxjs/operators';
 })
 export class StocksGridComponent implements OnInit, OnDestroy {
   @Input() data: Observable<FOVRes[] | OOIRes[]>;
-  subscription: Subscription;
   stocks = new BehaviorSubject<FOVRes[] | OOIRes[]>([]);
+  @ViewChild(CdkVirtualScrollViewport, { static: false })
+  vs: CdkVirtualScrollViewport;
+  subscription: Subscription;
   constructor() {}
 
   ngOnInit() {

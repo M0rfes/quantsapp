@@ -7,7 +7,7 @@
       </mat-icon>
     </app-headers>
     <div>
-      <article *ngFor="let item of data | async">
+      <article *ngFor="let item of calls | async">
         <app-stock [item]="item"></app-stock>
       </article>
     </div>
@@ -19,7 +19,7 @@
       </mat-icon>
     </app-headers>
     <div>
-      <article *ngFor="let item of data2 | async">
+      <article *ngFor="let item of puts | async">
         <app-stock [item]="item"></app-stock>
       </article>
     </div>

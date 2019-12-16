@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TriggerDataService } from './trigger-data.service';
 import { TRes, PTRes } from './interfaces/TRes.interface';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
@@ -9,19 +9,25 @@ import { map, tap, take } from 'rxjs/operators';
   templateUrl: './option-triggers.component.html',
   styleUrls: ['./option-triggers.component.scss'],
 })
-export class OptionTriggersComponent implements OnInit {
-  calls = new BehaviorSubject<PTRes[]>([]);
-  puts = new BehaviorSubject<PTRes[]>([]);
-  subscription: Subscription;
+export class OptionTriggersComponent implements OnInit, OnDestroy {
+  calls = new BehaviorSubject<[PTRes, PTRes][]>([]);
+  puts = new BehaviorSubject<[PTRes, PTRes][]>([]);
+  callSubscription: Subscription;
+  putSubscription: Subscription;
   constructor(private readonly TDataS: TriggerDataService) {}
 
   ngOnInit() {
-    this.TDataS.data()
+    this.callSubscription = this.getCalls();
+    this.putSubscription = this.getPuts();
+  }
+
+  private getCalls() {
+    return this.TDataS.data()
       .pipe(
-        tap(data =>
+        map(data =>
           data
             .filter(d => +d.h_call_diff < 1 && +d.h_call_diff > -1)
-            .forEach(
+            .map(
               ({
                 symbol,
                 fut_close,
@@ -30,24 +36,33 @@ export class OptionTriggersComponent implements OnInit {
                 h_put,
                 h_call_oi,
                 h_call_oi_chg,
-              }) => {
-                const current = {
-                  symbol,
-                  fut_close,
-                  diff: h_call_diff,
-                  h_call,
-                  h_put,
-                  oi: h_call_oi,
-                  oi_chg: h_call_oi_chg,
-                };
-                this.calls.next([...this.calls.getValue(), current]);
-              },
+              }) => ({
+                symbol,
+                fut_close,
+                diff: h_call_diff,
+                h_call,
+                h_put,
+                oi: h_call_oi,
+                oi_chg: h_call_oi_chg,
+              }),
             ),
         ),
-        tap(data =>
+        tap(data => {
+          this.calls.next([
+            ...this.calls.getValue(),
+            ...this.TDataS.batchTwo(data),
+          ]);
+        }),
+      )
+      .subscribe();
+  }
+  private getPuts() {
+    return this.TDataS.data()
+      .pipe(
+        map(data =>
           data
             .filter(d => +d.h_put_diff < 1 && +d.h_put_diff > -1)
-            .forEach(
+            .map(
               ({
                 symbol,
                 fut_close,
@@ -56,22 +71,28 @@ export class OptionTriggersComponent implements OnInit {
                 h_put,
                 h_put_oi,
                 h_put_oi_chg,
-              }) => {
-                const current = {
-                  symbol,
-                  fut_close,
-                  diff: h_put_diff,
-                  h_call,
-                  h_put,
-                  oi: h_put_oi,
-                  oi_chg: h_put_oi_chg,
-                };
-                this.puts.next([...this.puts.getValue(), current]);
-              },
+              }) => ({
+                symbol,
+                fut_close,
+                diff: h_put_diff,
+                h_call,
+                h_put,
+                oi: h_put_oi,
+                oi_chg: h_put_oi_chg,
+              }),
             ),
         ),
-        take(1),
+        tap(data => {
+          this.puts.next([
+            ...this.calls.getValue(),
+            ...this.TDataS.batchTwo(data),
+          ]);
+        }),
       )
       .subscribe();
+  }
+  ngOnDestroy(): void {
+    this.callSubscription.unsubscribe();
+    this.putSubscription.unsubscribe();
   }
 }

@@ -23,3 +23,10 @@ body {
   background: var(--BG-color);
   color: #ffffff;
 }
+cdk-virtual-scroll-viewport {
+  height: 100%;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

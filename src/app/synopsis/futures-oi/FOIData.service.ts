@@ -5,6 +5,7 @@ import FOIResult from './interfaces/FOIResult.interface';
 import { FOIRes } from 'src/app/synopsis/futures-oi/interfaces/FOIRes.type';
 import { EmitterService } from 'src/app/shared/emitter.service';
 import { Observable } from 'rxjs';
+import { TupleOfFour } from 'src/utils/tupleOfFour';
 @Injectable({
   providedIn: 'root',
 })
@@ -22,7 +23,7 @@ export class FOIDataService {
           len_s: number;
           len_sc: number;
         },
-        [FOIRes, FOIRes, FOIRes, FOIRes][],
+        FOIRes[],
       ]
     >(this.fetchData.bind(this));
   }
@@ -75,10 +76,10 @@ export class FOIDataService {
     FOIRes[],
     { len_l: number; len_lu: number; len_s: number; len_sc: number },
   ]) {
-    return [data, this.batchFour(r)];
+    return [data, r];
   }
 
-  private batchFour(
+  batchFour(
     [f, s, t, fr, ...rest]: FOIRes[],
     ans: [FOIRes, FOIRes, FOIRes, FOIRes][] = [],
   ): [FOIRes, FOIRes, FOIRes, FOIRes][] {

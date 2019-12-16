@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import zipMap from 'src/utils/zipMap';
 import { map } from 'rxjs/operators';
 import { TResult } from './interfaces/TResult.interface';
-import { TRes } from './interfaces/TRes.interface';
+import { TRes, PTRes } from './interfaces/TRes.interface';
 import { Observable } from 'rxjs';
 import { EmitterService } from '../shared/emitter.service';
 
@@ -27,5 +27,15 @@ export class TriggerDataService {
           .reduce(zipMap),
       ),
     );
+  }
+  batchTwo(
+    [f, s, ...rest]: PTRes[],
+    ans: [PTRes, PTRes][] = [],
+  ): [PTRes, PTRes][] {
+    if (rest.length === 0) {
+      return [...ans, [f, s]];
+    } else {
+      return this.batchTwo(rest, [...ans, [f, s]]);
+    }
   }
 }

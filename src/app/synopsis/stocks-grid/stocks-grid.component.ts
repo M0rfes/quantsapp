@@ -4,6 +4,7 @@ import { FOVRes } from '../fovolume/interfaces/FOVRes.interface';
 import { OOIRes } from '../options-oi/interfaces/OOIRes.interface';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { tap, take } from 'rxjs/operators';
+import { AutoScrollComponent } from 'src/app/shared/auto-scroll/auto-scroll.component';
 
 @Component({
   selector: 'app-stocks-grid',
@@ -27,7 +28,6 @@ export class StocksGridComponent implements OnInit, OnDestroy {
         tap(data => {
           this.stocks.next([...this.stocks.getValue(), ...data] as any);
         }),
-        take(1),
       )
       .subscribe();
   }

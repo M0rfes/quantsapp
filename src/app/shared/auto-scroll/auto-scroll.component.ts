@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  ViewChild,
   AfterViewInit,
   OnDestroy,
   Input,
@@ -17,13 +16,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./auto-scroll.component.scss'],
 })
 export class AutoScrollComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild(CdkVirtualScrollViewport, { static: false })
+  @Input()
   vs: CdkVirtualScrollViewport;
   @Input() data: Observable<any[]>;
   @Input() itemSize: number;
   private offSet = 5;
   private animationId: number;
-  @ContentChild(TemplateRef, { static: false }) itemTemplate: TemplateRef<any>;
+  @ContentChild(TemplateRef, { static: false }) auto: TemplateRef<any>;
   constructor() {}
 
   ngOnInit() {}
@@ -39,6 +38,7 @@ export class AutoScrollComponent implements OnInit, AfterViewInit, OnDestroy {
     };
     scroll();
   }
+
   ngOnDestroy(): void {
     cancelAnimationFrame(this.animationId);
   }

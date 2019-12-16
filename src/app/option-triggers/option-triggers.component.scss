@@ -1,4 +1,4 @@
-main > div {
+app-stocks-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0.5rem;
@@ -16,4 +16,10 @@ mat-icon {
   font-size: 7rem;
   display: flex;
   align-items: center;
+}
+app-stocks-list {
+  padding: 0.5rem 0;
+}
+div {
+  height: 100vh;
 }

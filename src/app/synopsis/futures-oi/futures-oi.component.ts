@@ -5,13 +5,14 @@ import { FOIRes } from 'src/app/synopsis/futures-oi/interfaces/FOIRes.type';
 import { FOIDataService } from './FOIData.service';
 import { take, tap } from 'rxjs/operators';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { TupleOfFour } from 'src/utils/tupleOfFour';
 @Component({
   selector: 'app-futures-oi',
   templateUrl: './futures-oi.component.html',
   styleUrls: ['./futures-oi.component.scss'],
 })
 export class FuturesOIComponent implements OnInit, OnDestroy {
-  readonly stocks = new BehaviorSubject<[FOIRes, FOIRes, FOIRes, FOIRes][]>([]);
+  readonly stocks = new BehaviorSubject<TupleOfFour<FOIRes>[]>([]);
   subscription: Subscription;
   ctx: Chart;
   @ViewChild(CdkVirtualScrollViewport, { static: false })
@@ -52,9 +53,11 @@ export class FuturesOIComponent implements OnInit, OnDestroy {
               },
             },
           });
-          this.stocks.next([...this.stocks.getValue(), ...r]);
+          this.stocks.next([
+            ...this.stocks.getValue(),
+            ...this.dataS.batchFour(r),
+          ]);
         }),
-        take(1),
       )
       .subscribe();
   }

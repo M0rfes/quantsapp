@@ -1,0 +1,19 @@
+header {
+  margin: 1rem 0;
+  text-transform: uppercase;
+  mat-card {
+    color: rgba($color: #ffffff, $alpha: 0.5);
+    background: rgba(248, 248, 248, 0.2);
+    text-align: center;
+    mat-card-title {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-size: 3rem;
+    }
+  }
+}
+
+.rowRev {
+  flex-direction: row-reverse;
+}

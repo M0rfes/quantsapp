@@ -1,96 +1,26 @@
 <!-- TODO Refactor later -->
 <div class="grid">
   <main>
-    <header>
-      <mat-card>
-        <mat-card-title>
-          <img src="../../assets/icon_profit@3x.png" alt="" />
-          <span>
-            highest call
-          </span>
-        </mat-card-title>
-      </mat-card>
-    </header>
+    <app-headers title="highest call">
+      <mat-icon style="color: #90ee90;">
+        trending_up
+      </mat-icon>
+    </app-headers>
     <div>
       <article *ngFor="let item of data | async">
-        <mat-card>
-          <mat-card-title>
-            {{ item.symbol }}
-          </mat-card-title>
-          <mat-card-content>
-            <div>
-              <small>future price</small>
-              <p>{{ item.fut_close }}</p>
-            </div>
-            <div>
-              <small>call diff</small>
-              <p>{{ item.diff }}</p>
-            </div>
-            <div>
-              <small>hc strike</small>
-              <p>{{ item.h_call }}</p>
-            </div>
-            <div>
-              <small>hp strike</small>
-              <p>{{ item.h_put }}</p>
-            </div>
-            <div>
-              <small>call oi</small>
-              <p>{{ item.oi }}</p>
-            </div>
-            <div>
-              <small>call oi change</small>
-              <p>{{ item.oi_chg }}</p>
-            </div>
-          </mat-card-content>
-        </mat-card>
+        <app-stock [item]="item"></app-stock>
       </article>
     </div>
   </main>
   <main>
-    <header>
-      <mat-card>
-        <mat-card-title>
-          <span>
-            highest put
-          </span>
-          <img src="../../assets/icon_loss@3x.png" alt="" />
-        </mat-card-title>
-      </mat-card>
-    </header>
+    <app-headers title="highest put" end="true">
+      <mat-icon style="color: #ff4500;">
+        trending_down
+      </mat-icon>
+    </app-headers>
     <div>
       <article *ngFor="let item of data2 | async">
-        <mat-card>
-          <mat-card-title>
-            {{ item.symbol }}
-          </mat-card-title>
-          <mat-card-content>
-            <div>
-              <small>future price</small>
-              <p>{{ item.fut_close }}</p>
-            </div>
-            <div>
-              <small>call diff</small>
-              <p>{{ item.diff }}</p>
-            </div>
-            <div>
-              <small>hc strike</small>
-              <p>{{ item.h_call }}</p>
-            </div>
-            <div>
-              <small>hp strike</small>
-              <p>{{ item.h_put }}</p>
-            </div>
-            <div>
-              <small>put oi</small>
-              <p>{{ item.oi }}</p>
-            </div>
-            <div>
-              <small>put oi change</small>
-              <p>{{ item.oi_chg }}</p>
-            </div>
-          </mat-card-content>
-        </mat-card>
+        <app-stock [item]="item"></app-stock>
       </article>
     </div>
   </main>

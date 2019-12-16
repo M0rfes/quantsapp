@@ -1,0 +1,22 @@
+mat-card {
+  font-size: 3rem;
+  background: var(--FG-color);
+  color: #ffffff;
+  mat-card-title {
+    font-size: 3rem;
+  }
+  mat-card-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    small {
+      font-size: 1.5rem;
+      color: rgba($color: #ffffff, $alpha: 0.5);
+      text-transform: uppercase;
+    }
+    p {
+      font-size: 2rem;
+      font-weight: bolder;
+      word-wrap: none;
+    }
+  }
+}

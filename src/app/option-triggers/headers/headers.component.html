@@ -1,0 +1,10 @@
+<header>
+  <mat-card>
+    <mat-card-title [ngClass]="{ rowRev: end }">
+      <ng-content></ng-content>
+      <span>
+        {{ title }}
+      </span>
+    </mat-card-title>
+  </mat-card>
+</header>

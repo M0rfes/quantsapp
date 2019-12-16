@@ -1,0 +1,95 @@
+Flutter crash report; please file at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter doctor
+
+## exception
+
+FileSystemException: FileSystemException: Cannot open file, path = '/opt/flutter/bin/cache/flutter_version_check.stamp' (OS Error: Permission denied, errno = 13)
+
+```
+#0      _File.throwIfError (dart:io/file_impl.dart:643:7)
+#1      _File.openSync (dart:io/file_impl.dart:487:5)
+#2      _File.writeAsBytesSync (dart:io/file_impl.dart:612:31)
+#3      _File.writeAsStringSync (dart:io/file_impl.dart:636:5)
+#4      ForwardingFile.writeAsStringSync (package:file/src/forwarding/forwarding_file.dart:154:16)
+#5      Cache.setStampFor (package:flutter_tools/src/cache.dart:278:35)
+#6      VersionCheckStamp.store (package:flutter_tools/src/version.dart:472:20)
+<asynchronous suspension>
+#7      FlutterVersion.checkFlutterVersionFreshness (package:flutter_tools/src/version.dart:326:15)
+<asynchronous suspension>
+#8      FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:378:41)
+<asynchronous suspension>
+#9      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:29)
+<asynchronous suspension>
+#10     _rootRun (dart:async/zone.dart:1124:13)
+#11     _CustomZone.run (dart:async/zone.dart:1021:19)
+#12     _runZoned (dart:async/zone.dart:1516:10)
+#13     runZoned (dart:async/zone.dart:1463:12)
+#14     AppContext.run (package:flutter_tools/src/base/context.dart:153:18)
+<asynchronous suspension>
+#15     FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:356:19)
+<asynchronous suspension>
+#16     CommandRunner.run.<anonymous closure> (package:args/command_runner.dart:112:25)
+#17     new Future.sync (dart:async/future.dart:224:31)
+#18     CommandRunner.run (package:args/command_runner.dart:112:14)
+#19     FlutterCommandRunner.run (package:flutter_tools/src/runner/flutter_command_runner.dart:242:18)
+#20     run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:63:22)
+<asynchronous suspension>
+#21     _rootRun (dart:async/zone.dart:1124:13)
+#22     _CustomZone.run (dart:async/zone.dart:1021:19)
+#23     _runZoned (dart:async/zone.dart:1516:10)
+#24     runZoned (dart:async/zone.dart:1500:12)
+#25     run.<anonymous closure> (package:flutter_tools/runner.dart:61:18)
+<asynchronous suspension>
+#26     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:29)
+<asynchronous suspension>
+#27     _rootRun (dart:async/zone.dart:1124:13)
+#28     _CustomZone.run (dart:async/zone.dart:1021:19)
+#29     _runZoned (dart:async/zone.dart:1516:10)
+#30     runZoned (dart:async/zone.dart:1463:12)
+#31     AppContext.run (package:flutter_tools/src/base/context.dart:153:18)
+<asynchronous suspension>
+#32     runInContext (package:flutter_tools/src/context_runner.dart:59:24)
+<asynchronous suspension>
+#33     run (package:flutter_tools/runner.dart:50:10)
+#34     main (package:flutter_tools/executable.dart:65:9)
+<asynchronous suspension>
+#35     main (file:///b/s/w/ir/k/archive/flutter/packages/flutter_tools/bin/flutter_tools.dart:8:3)
+#36     _startIsolate.<anonymous closure> (dart:isolate-patch/isolate_patch.dart:303:32)
+#37     _RawReceivePortImpl._handleMessage (dart:isolate-patch/isolate_patch.dart:172:12)
+```
+
+## flutter doctor
+
+```
+[32m[✓][39m Flutter (Channel stable, v1.9.1+hotfix.6, on Linux, locale en_IN)
+    [32m•[39m Flutter version 1.9.1+hotfix.6 at /opt/flutter
+    [32m•[39m Framework revision 68587a0916 (3 months ago), 2019-09-13 19:46:58 -0700
+    [32m•[39m Engine revision b863200c37
+    [32m•[39m Dart version 2.5.0
+
+[33m[!][39m Android toolchain - develop for Android devices (Android SDK version 29.0.2)
+    [32m•[39m Android SDK at /home/khan/Android/Sdk
+    [32m•[39m Android NDK location not configured (optional; useful for native profiling support)
+    [32m•[39m Platform android-29, build-tools 29.0.2
+    [32m•[39m ANDROID_HOME = /home/khan/Android/Sdk
+    [32m•[39m Java binary at: /opt/android-studio/jre/bin/java
+    [32m•[39m Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
+    [31m✗[39m Android license status unknown.
+      Try re-installing or updating your Android SDK Manager.
+      See https://developer.android.com/studio/#downloads or visit https://flutter.dev/setup/#android-setup for detailed
+      instructions.
+
+[33m[!][39m Android Studio (version 3.5)
+    [32m•[39m Android Studio at /opt/android-studio
+    [31m✗[39m Flutter plugin not installed; this adds Flutter specific functionality.
+    [31m✗[39m Dart plugin not installed; this adds Dart specific functionality.
+    [32m•[39m Java version OpenJDK Runtime Environment (build 1.8.0_202-release-1483-b49-5587405)
+
+[33m[!][39m Connected device
+    [33m![39m No devices available
+
+[33m![39m Doctor found issues in 3 categories.
+```

@@ -17,14 +17,10 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
   templateUrl: './futures-oi.component.html',
   styleUrls: ['./futures-oi.component.scss'],
 })
-export class FuturesOIComponent implements OnInit, OnDestroy, AfterViewInit {
-  @ViewChild(CdkVirtualScrollViewport, { static: false })
-  vs: CdkVirtualScrollViewport;
+export class FuturesOIComponent implements OnInit, OnDestroy {
   readonly stocks = new BehaviorSubject<[FOIRes, FOIRes, FOIRes, FOIRes][]>([]);
   subscription: Subscription;
   ctx: Chart;
-  offSet = 5;
-  private animationId: number;
 
   constructor(private readonly dataS: FOIDataService) {}
 
@@ -69,20 +65,7 @@ export class FuturesOIComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe();
   }
 
-  ngAfterViewInit(): void {
-    const scroll = () => {
-      this.animationId = requestAnimationFrame(scroll);
-      this.vs.scrollToOffset(this.offSet++, 'smooth');
-      scrollBy({
-        top: 1,
-        behavior: 'smooth',
-      });
-    };
-    scroll();
-  }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    cancelAnimationFrame(this.animationId);
   }
 }

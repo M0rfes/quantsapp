@@ -18,14 +18,10 @@ import { tap, take } from 'rxjs/operators';
   templateUrl: './stocks-grid.component.html',
   styleUrls: ['./stocks-grid.component.scss'],
 })
-export class StocksGridComponent implements OnInit, AfterViewInit, OnDestroy {
+export class StocksGridComponent implements OnInit, OnDestroy {
   @Input() data: Observable<FOVRes[] | OOIRes[]>;
   subscription: Subscription;
-  private animationId: number;
   stocks = new BehaviorSubject<FOVRes[] | OOIRes[]>([]);
-  offSet = 1;
-  @ViewChild(CdkVirtualScrollViewport, { static: false })
-  vs: CdkVirtualScrollViewport;
   constructor() {}
 
   ngOnInit() {
@@ -42,19 +38,7 @@ export class StocksGridComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe();
   }
 
-  ngAfterViewInit(): void {
-    const scroll = () => {
-      this.animationId = requestAnimationFrame(scroll);
-      this.vs.scrollToOffset(this.offSet++, 'smooth');
-      scrollBy({
-        top: 1,
-        behavior: 'smooth',
-      });
-    };
-    scroll();
-  }
   ngOnDestroy(): void {
-    cancelAnimationFrame(this.animationId);
     this.subscription.unsubscribe();
   }
 }

@@ -14,11 +14,11 @@
 <main class="container-fluid">
   <div class="heatMap ">
     <cdk-virtual-scroll-viewport itemSize="400">
-      <div>
+      <app-auto-scroll>
         <div *cdkVirtualFor="let item of stocks | async">
           <app-heat-map [stocks]="item"></app-heat-map>
         </div>
-      </div>
+      </app-auto-scroll>
     </cdk-virtual-scroll-viewport>
   </div>
 </main>

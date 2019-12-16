@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { OOIResult } from './interfaces/OOIResult.interface';
 import { map } from 'rxjs/operators';
 import { EmitterService } from 'src/app/shared/emitter.service';
+import { OOIRes } from './interfaces/OOIRes.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class OOIDataService {
     private readonly emitS: EmitterService,
   ) {}
   data() {
-    return this.emitS.emitter<OOIResult[]>(this.fetchData.bind(this));
+    return this.emitS.emitter<OOIRes[]>(this.fetchData.bind(this));
   }
   private fetchData() {
     return this.http

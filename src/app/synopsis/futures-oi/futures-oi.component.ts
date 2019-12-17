@@ -1,9 +1,15 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import * as Chart from 'chart.js';
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { FOIRes } from 'src/app/synopsis/futures-oi/interfaces/FOIRes.type';
 import { FOIDataService } from './FOIData.service';
-import { take, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { TupleOfFour } from 'src/utils/tupleOfFour';
 @Component({
@@ -15,8 +21,7 @@ export class FuturesOIComponent implements OnInit, OnDestroy {
   readonly stocks = new BehaviorSubject<TupleOfFour<FOIRes>[]>([]);
   subscription: Subscription;
   ctx: Chart;
-  @ViewChild(CdkVirtualScrollViewport, { static: false })
-  vs: CdkVirtualScrollViewport;
+  @ViewChild('canvas', { static: false }) canvas: ElementRef;
   dataLen: number;
   currentData: FOIRes[];
   constructor(private readonly dataS: FOIDataService) {}
@@ -29,7 +34,7 @@ export class FuturesOIComponent implements OnInit, OnDestroy {
       .data()
       .pipe(
         tap(([data, r]) => {
-          this.ctx = new Chart('ctx', {
+          this.ctx = new Chart(this.canvas.nativeElement, {
             type: 'doughnut',
             data: {
               datasets: [
@@ -40,8 +45,8 @@ export class FuturesOIComponent implements OnInit, OnDestroy {
               ],
               labels: [
                 `L ${data.len_l}`,
-                `LU ${data.len_lu}`,
                 `S ${data.len_s}`,
+                `LU ${data.len_lu}`,
                 `SC ${data.len_sc}`,
               ],
             },
@@ -54,6 +59,7 @@ export class FuturesOIComponent implements OnInit, OnDestroy {
                 },
                 position: 'left',
               },
+              aspectRatio: 1,
             },
           });
           this.reaFetch(r);

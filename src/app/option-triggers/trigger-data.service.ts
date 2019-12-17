@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import zipMap from 'src/utils/zipMap';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { TResult } from './interfaces/TResult.interface';
 import { TRes, PTRes } from './interfaces/TRes.interface';
 import { Observable } from 'rxjs';
@@ -19,7 +19,7 @@ export class TriggerDataService {
     return this.emitS.emitter(this.fetchData.bind(this));
   }
   private fetchData() {
-    return this.http.get<TResult>('http://localhost:3000/ot').pipe(
+    return this.http.get<TResult>('http://localhost:3000/OptionTriggers').pipe(
       map(data =>
         Object.entries(data)
           .filter(([, [t]]) => t.length > 1)

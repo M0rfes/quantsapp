@@ -88,25 +88,21 @@ export class OptionTriggersComponent implements OnInit, OnDestroy {
       .subscribe();
   }
   private refetchCalls(data: PTRes[]) {
-    const cData = this.TDataS.batchTwo(data);
-    this.calls.next([...this.calls.getValue(), ...cData]);
+    this.calls.next([...this.calls.getValue(), ...this.TDataS.batchTwo(data)]);
     this.currentcallData = data;
     this.callLen = this.calls.getValue().length - 1;
   }
   refreashCalls(e: number) {
-    console.log(e, this.callLen);
     if (e === this.callLen - 1) {
       this.refetchCalls(this.currentcallData);
     }
   }
   private refetchPuts(data: PTRes[]) {
-    const cData = this.TDataS.batchTwo(data);
-    this.puts.next([...this.calls.getValue(), ...cData]);
+    this.puts.next([...this.puts.getValue(), ...this.TDataS.batchTwo(data)]);
     this.currentPutData = data;
     this.putLen = this.puts.getValue().length - 1;
   }
   refreashPuts(e: number) {
-    console.log(e, this.putLen);
     if (e === this.putLen - 1) {
       this.refetchPuts(this.currentPutData);
     }

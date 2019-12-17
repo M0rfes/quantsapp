@@ -52,6 +52,7 @@ export class FuturesOIComponent implements OnInit, OnDestroy {
                   fontColor: '#ffffffff',
                   fontSize: 32,
                 },
+                position: 'left',
               },
             },
           });

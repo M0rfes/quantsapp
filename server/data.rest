@@ -1,0 +1,14 @@
+POST https://api.quantsapp.in/app_api/cp-built
+
+{
+    "expiry": "26-Dec-19",
+    "user_id": "109066",
+    "token": "729"
+}
+
+
+POST https://s3.ap-south-1.amazonaws.com/appmasterfiles/
+{
+ " token": "324" ,
+ "user_id": "54267"
+}

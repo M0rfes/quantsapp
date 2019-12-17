@@ -18,7 +18,7 @@ export class FOVDataService {
   }
   private fetchData() {
     return this.http
-      .get<FOVResult>('http://localhost:3000/fov')
+      .get<FOVResult>('http://localhost:3000/SynopsisFOVolume')
       .pipe(map(this.dataFromReq), map(this.formate));
   }
   private dataFromReq(d: FOVResult) {

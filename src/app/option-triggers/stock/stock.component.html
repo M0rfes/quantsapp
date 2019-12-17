@@ -1,31 +1,31 @@
 <mat-card *ngIf="item">
-  <mat-card-title>
-    {{ item.symbol }}
-  </mat-card-title>
-  <mat-card-content>
-    <div>
-      <small>future price</small>
-      <p>{{ item.fut_close }}</p>
-    </div>
-    <div>
-      <small>call diff</small>
-      <p>{{ item.diff }}</p>
-    </div>
-    <div>
-      <small>hc strike</small>
-      <p>{{ item.h_call }}</p>
-    </div>
-    <div>
-      <small>hp strike</small>
-      <p>{{ item.h_put }}</p>
-    </div>
-    <div>
-      <small>call oi</small>
-      <p>{{ item.oi }}</p>
-    </div>
-    <div>
-      <small>call oi change</small>
-      <p>{{ item.oi_chg }}</p>
-    </div>
-  </mat-card-content>
+    <mat-card-title>
+        {{ item.symbol }}
+    </mat-card-title>
+    <mat-card-content>
+        <div>
+            <small>future px</small>
+            <p>{{ item.fut_close }}</p>
+        </div>
+        <div>
+            <small>{{ item.type }} diff</small>
+            <p [ngStyle]="{ color: diffColor(item.diff) }">{{ item.diff }}</p>
+        </div>
+        <div>
+            <small>hc strike</small>
+            <p [ngClass]="{ test: item.type === 'call' }">{{ item.h_call }}</p>
+        </div>
+        <div>
+            <small>hp strike</small>
+            <p [ngClass]="{ test: item.type === 'put' }">{{ item.h_put }}</p>
+        </div>
+        <div>
+            <small> oi</small>
+            <p>{{ item.oi }}</p>
+        </div>
+        <div>
+            <small> oi change</small>
+            <p>{{ item.oi_chg }}</p>
+        </div>
+    </mat-card-content>
 </mat-card>

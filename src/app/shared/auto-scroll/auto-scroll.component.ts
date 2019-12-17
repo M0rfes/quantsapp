@@ -20,6 +20,7 @@ export class AutoScrollComponent implements OnInit, AfterViewInit, OnDestroy {
   vs: CdkVirtualScrollViewport;
   @Input() data: Observable<any[]>;
   @Input() itemSize: number;
+  @Input() scroll = true;
   private offSet = 5;
   private animationId: number;
   @ContentChild(TemplateRef, { static: false }) auto: TemplateRef<any>;
@@ -36,7 +37,9 @@ export class AutoScrollComponent implements OnInit, AfterViewInit, OnDestroy {
         behavior: 'smooth',
       });
     };
-    scroll();
+    if (this.scroll) {
+      scroll();
+    }
   }
 
   ngOnDestroy(): void {

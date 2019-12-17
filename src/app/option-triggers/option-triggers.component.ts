@@ -44,6 +44,7 @@ export class OptionTriggersComponent implements OnInit, OnDestroy {
                 h_put,
                 oi: h_call_oi,
                 oi_chg: h_call_oi_chg,
+                type: 'call',
               }),
             ),
         ),
@@ -79,12 +80,13 @@ export class OptionTriggersComponent implements OnInit, OnDestroy {
                 h_put,
                 oi: h_put_oi,
                 oi_chg: h_put_oi_chg,
+                type: 'put',
               }),
             ),
         ),
         tap(data => {
           this.puts.next([
-            ...this.calls.getValue(),
+            ...this.puts.getValue(),
             ...this.TDataS.batchTwo(data),
           ]);
         }),

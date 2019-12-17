@@ -11,4 +11,12 @@ export class StockComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  diffColor(diff: string) {
+    if (+diff > 0) {
+      return ' #90ee90';
+    } else {
+      return '#ff4500';
+    }
+  }
 }

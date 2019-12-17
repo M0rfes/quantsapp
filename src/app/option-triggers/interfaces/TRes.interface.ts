@@ -18,4 +18,5 @@ export interface PTRes {
   h_put: string;
   oi: string;
   oi_chg: string;
+  type: string;
 }

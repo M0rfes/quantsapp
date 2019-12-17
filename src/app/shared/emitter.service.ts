@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class EmitterService {
   constructor() {}
-
+  /**
+   * TODO: Loop existing data for 5 min untile then give same data back
+   */
   emitter<T>(
     cb: () => Observable<T>,
     interval = 1000 * 60,

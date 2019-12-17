@@ -1,41 +1,39 @@
-<!-- TODO Refactor later -->
+<header>
+    <div class="grid">
+        <app-headers title="highest call">
+            <mat-icon style="color: #90ee90;">
+                trending_up
+            </mat-icon>
+        </app-headers>
+        <app-headers title="highest put" end="true">
+            <mat-icon style="color: #ff4500;">
+                trending_down
+            </mat-icon>
+        </app-headers>
+    </div>
+</header>
+
 <div class="grid">
-  <main>
-    <app-headers title="highest call">
-      <mat-icon style="color: #90ee90;">
-        trending_up
-      </mat-icon>
-    </app-headers>
-    <div>
-      <cdk-virtual-scroll-viewport itemSize="1" #vs>
-        <app-auto-scroll [vs]="vs">
-          <article *cdkVirtualFor="let item of calls | async">
-            <app-stocks-list [stocks]="item"></app-stocks-list>
-          </article>
-        </app-auto-scroll>
-      </cdk-virtual-scroll-viewport>
-      <!-- <article *ngFor="let item of calls | async">
-        <app-stocks-list [stocks]="item"></app-stocks-list>
-      </article> -->
-    </div>
-  </main>
-  <main>
-    <app-headers title="highest put" end="true">
-      <mat-icon style="color: #ff4500;">
-        trending_down
-      </mat-icon>
-    </app-headers>
-    <div>
-      <cdk-virtual-scroll-viewport itemSize="1" #vs2>
-        <app-auto-scroll [vs]="vs2">
-          <article *cdkVirtualFor="let item of puts | async">
-            <app-stocks-list [stocks]="item"></app-stocks-list>
-          </article>
-        </app-auto-scroll>
-      </cdk-virtual-scroll-viewport>
-      <!-- <article *ngFor="let item of puts | async">
-        <app-stocks-list [stocks]="item"></app-stocks-list>
-      </article> -->
-    </div>
-  </main>
+    <main>
+        <div>
+            <cdk-virtual-scroll-viewport itemSize="1" #vs>
+                <app-auto-scroll [vs]="vs">
+                    <article *cdkVirtualFor="let item of calls | async">
+                        <app-stocks-list [stocks]="item"></app-stocks-list>
+                    </article>
+                </app-auto-scroll>
+            </cdk-virtual-scroll-viewport>
+        </div>
+    </main>
+    <main>
+        <div>
+            <cdk-virtual-scroll-viewport itemSize="1" #vs2>
+                <app-auto-scroll [vs]="vs2">
+                    <article *cdkVirtualFor="let item of puts | async">
+                        <app-stocks-list [stocks]="item"></app-stocks-list>
+                    </article>
+                </app-auto-scroll>
+            </cdk-virtual-scroll-viewport>
+        </div>
+    </main>
 </div>

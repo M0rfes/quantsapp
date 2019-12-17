@@ -12,10 +12,9 @@ export class EmitterService {
    */
   emitter<T>(
     cb: () => Observable<T>,
-    interval = 1000 * 60,
+    interval = 1000 * 60 * 5,
     initialDelay = 0,
   ): Observable<T> {
-    console.log('re fetching');
     return TimerObservable.create(initialDelay, interval).pipe(switchMap(cb));
   }
 }

@@ -14,6 +14,10 @@ export class OptionTriggersComponent implements OnInit, OnDestroy {
   puts = new BehaviorSubject<[PTRes, PTRes][]>([]);
   callSubscription: Subscription;
   putSubscription: Subscription;
+  currentcallData: PTRes[];
+  callLen: number;
+  currentPutData: PTRes[];
+  putLen: number;
   constructor(private readonly TDataS: TriggerDataService) {}
 
   ngOnInit() {
@@ -48,12 +52,7 @@ export class OptionTriggersComponent implements OnInit, OnDestroy {
               }),
             ),
         ),
-        tap(data => {
-          this.calls.next([
-            ...this.calls.getValue(),
-            ...this.TDataS.batchTwo(data),
-          ]);
-        }),
+        tap(this.refetchCalls.bind(this)),
       )
       .subscribe();
   }
@@ -84,14 +83,33 @@ export class OptionTriggersComponent implements OnInit, OnDestroy {
               }),
             ),
         ),
-        tap(data => {
-          this.puts.next([
-            ...this.puts.getValue(),
-            ...this.TDataS.batchTwo(data),
-          ]);
-        }),
+        tap(this.refetchPuts.bind(this)),
       )
       .subscribe();
+  }
+  private refetchCalls(data: PTRes[]) {
+    const cData = this.TDataS.batchTwo(data);
+    this.calls.next([...this.calls.getValue(), ...cData]);
+    this.currentcallData = data;
+    this.callLen = this.calls.getValue().length - 1;
+  }
+  refreashCalls(e: number) {
+    console.log(e, this.callLen);
+    if (e === this.callLen - 1) {
+      this.refetchCalls(this.currentcallData);
+    }
+  }
+  private refetchPuts(data: PTRes[]) {
+    const cData = this.TDataS.batchTwo(data);
+    this.puts.next([...this.calls.getValue(), ...cData]);
+    this.currentPutData = data;
+    this.putLen = this.puts.getValue().length - 1;
+  }
+  refreashPuts(e: number) {
+    console.log(e, this.putLen);
+    if (e === this.putLen - 1) {
+      this.refetchPuts(this.currentPutData);
+    }
   }
   ngOnDestroy(): void {
     this.callSubscription.unsubscribe();

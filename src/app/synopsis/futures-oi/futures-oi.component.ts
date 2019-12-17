@@ -17,6 +17,8 @@ export class FuturesOIComponent implements OnInit, OnDestroy {
   ctx: Chart;
   @ViewChild(CdkVirtualScrollViewport, { static: false })
   vs: CdkVirtualScrollViewport;
+  dataLen: number;
+  currentData: FOIRes[];
   constructor(private readonly dataS: FOIDataService) {}
 
   ngOnInit(): void {
@@ -53,13 +55,21 @@ export class FuturesOIComponent implements OnInit, OnDestroy {
               },
             },
           });
-          this.stocks.next([
-            ...this.stocks.getValue(),
-            ...this.dataS.batchFour(r),
-          ]);
+          this.reaFetch(r);
         }),
       )
       .subscribe();
+  }
+  private reaFetch(r: FOIRes[]) {
+    const data = this.dataS.batchFour(r);
+    this.stocks.next([...this.stocks.getValue(), ...data]);
+    this.currentData = r;
+    this.dataLen = this.stocks.getValue().length - 1;
+  }
+  refresh(e: number) {
+    if (e === this.dataLen - 1) {
+      this.reaFetch(this.currentData);
+    }
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

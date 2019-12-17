@@ -16,8 +16,8 @@
 <div class="grid">
     <main>
         <div>
-            <cdk-virtual-scroll-viewport itemSize="1" #vs>
-                <app-auto-scroll [vs]="vs">
+            <cdk-virtual-scroll-viewport itemSize="543" #vs (scrolledIndexChange)="refreashCalls($event)">
+                <app-auto-scroll [vs]="vs" [scroll]="true">
                     <article *cdkVirtualFor="let item of calls | async">
                         <app-stocks-list [stocks]="item"></app-stocks-list>
                     </article>
@@ -27,8 +27,8 @@
     </main>
     <main>
         <div>
-            <cdk-virtual-scroll-viewport itemSize="1" #vs2>
-                <app-auto-scroll [vs]="vs2">
+            <cdk-virtual-scroll-viewport itemSize="543" #vs2 (scrolledIndexChange)="refreashPuts($event)">
+                <app-auto-scroll [vs]="vs2" [scroll]="true">
                     <article *cdkVirtualFor="let item of puts | async">
                         <app-stocks-list [stocks]="item"></app-stocks-list>
                     </article>

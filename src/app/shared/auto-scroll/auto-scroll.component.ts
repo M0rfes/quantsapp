@@ -21,14 +21,13 @@ export class AutoScrollComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() data: Observable<any[]>;
   @Input() itemSize: number;
   @Input() scroll = true;
-  private offSet = 5;
+  private offSet = 0;
   private animationId: number;
   @ContentChild(TemplateRef, { static: false }) auto: TemplateRef<any>;
   constructor() {}
 
   ngOnInit() {}
   ngAfterViewInit(): void {
-    console.log(this.vs);
     const scroll = () => {
       this.animationId = requestAnimationFrame(scroll);
       this.vs.scrollToOffset(this.offSet++, 'smooth');

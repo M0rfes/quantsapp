@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { FOVResult } from './interfaces/FOVResult.interface';
 import zipMap from 'src/utils/zipMap';
 import { EmitterService } from 'src/app/shared/emitter.service';
@@ -26,7 +26,7 @@ export class FOVDataService {
       .map(v => ({ [v]: d[v] }))
       .reduce((p, c) => ({ ...p, ...c }), {});
   }
-  private formate(d) {
+  private formate(d: { [key: number]: any }) {
     const helper = vs =>
       Object.entries(vs)
         .map(([h, t]: [string, string[]]) => t.map(v => ({ [h]: v })))

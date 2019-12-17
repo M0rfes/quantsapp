@@ -17,21 +17,26 @@ export class StocksGridComponent implements OnInit, OnDestroy {
   @ViewChild(CdkVirtualScrollViewport, { static: false })
   vs: CdkVirtualScrollViewport;
   subscription: Subscription;
+  dataLen: number;
+  currentData: FOVRes[] | OOIRes[] = [];
   constructor() {}
 
   ngOnInit() {
     this.subscription = this.getData();
   }
   private getData() {
-    return this.data
-      .pipe(
-        tap(data => {
-          this.stocks.next([...this.stocks.getValue(), ...data] as any);
-        }),
-      )
-      .subscribe();
+    return this.data.pipe(tap(this.refeatch.bind(this))).subscribe();
   }
-
+  private refeatch(data: FOVRes[] | OOIRes[]) {
+    this.stocks.next([...this.stocks.getValue(), ...data] as any);
+    this.dataLen = this.stocks.getValue().length - 1;
+    this.currentData = data;
+  }
+  log(e: any) {
+    if (e === this.dataLen) {
+      this.refeatch(this.currentData);
+    }
+  }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

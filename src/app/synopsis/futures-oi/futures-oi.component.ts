@@ -65,10 +65,10 @@ export class FuturesOIComponent implements OnInit, OnDestroy {
     const data = this.dataS.batchFour(r);
     this.stocks.next([...this.stocks.getValue(), ...data]);
     this.currentData = r;
-    this.dataLen = this.stocks.getValue().length - 1;
+    this.dataLen = this.stocks.getValue().length;
   }
   refresh(e: number) {
-    if (e === this.dataLen - 1) {
+    if (e === this.dataLen - 3) {
       this.reaFetch(this.currentData);
     }
   }

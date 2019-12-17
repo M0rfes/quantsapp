@@ -80,13 +80,13 @@ export class FOIDataService {
   }
 
   batchFour(
-    [f, s, t, fr, ...rest]: FOIRes[],
-    ans: [FOIRes, FOIRes, FOIRes, FOIRes][] = [],
-  ): [FOIRes, FOIRes, FOIRes, FOIRes][] {
+    [f, s, t, fr, ft, ...rest]: FOIRes[],
+    ans: TupleOfFour<FOIRes>[] = [],
+  ): TupleOfFour<FOIRes>[] {
     if (rest.length === 0) {
-      return [...ans, [f, s, t, fr]];
+      return [...ans, [f, s, t, fr, ft]];
     } else {
-      return this.batchFour(rest, [...ans, [f, s, t, fr]]);
+      return this.batchFour(rest, [...ans, [f, s, t, fr, ft]]);
     }
   }
 }

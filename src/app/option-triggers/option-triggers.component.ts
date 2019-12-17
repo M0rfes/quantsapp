@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TriggerDataService } from './trigger-data.service';
-import { TRes, PTRes } from './interfaces/TRes.interface';
-import { Observable, BehaviorSubject, Subscription } from 'rxjs';
-import { map, tap, take } from 'rxjs/operators';
+import { PTRes } from './interfaces/TRes.interface';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-option-triggers',

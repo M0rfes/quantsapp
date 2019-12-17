@@ -1,6 +1,6 @@
 .subGrid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     min-width: 16rem;
     height: 16rem;
 }
@@ -9,10 +9,14 @@ p {
     font-size: 2rem;
     font-weight: bolder;
     word-wrap: none;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    word-wrap: break-word;
 }
 
-.span2 {
-    grid-column: span 2;
+.price {
+    text-align: center;
 }
 
 .l {
@@ -34,8 +38,12 @@ p {
 main {
     display: grid;
     // grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 1rem;
     // border: rebeccapurple solid 2px;
     margin: 1rem;
+}
+
+.symbol {
+    color: darken($color: #f49c0f, $amount: 5);
 }

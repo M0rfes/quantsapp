@@ -1,16 +1,18 @@
 <main>
-    <mat-card *ngFor="let r of stocks" [ngClass]="r.type">
-        <ng-container *ngIf="r">
-            <mat-card-title>
-                <p>{{ r.SYMBOL }}</p>
-            </mat-card-title>
+    <ng-container *ngFor="let r of stocks">
+        <mat-card [ngClass]="r.type" *ngIf="r">
             <mat-card-content class="subGrid ">
-                <p class="span2">{{ r.PRICE }}</p>
-                <p>% Price chg</p>
-                <p>{{ r.PRICE_CHANGE * 100 | number: '1.2-2' }}</p>
-                <p>% OI chg</p>
-                <p>{{ r.OI_CHANGE * 100 | number: '1.2-2' }}</p>
+                <p class="symbol">{{ r.SYMBOL }}</p>
+                <p class="price">{{ r.PRICE }}</p>
+                <div>
+                    <p>% price chg</p>
+                    <p>{{ r.PRICE_CHANGE * 100 | number: '1.2-2' }}</p>
+                </div>
+                <div>
+                    <p>% OI chg</p>
+                    <p>{{ r.OI_CHANGE * 100 | number: '1.2-2' }}</p>
+                </div>
             </mat-card-content>
-        </ng-container>
-    </mat-card>
+        </mat-card>
+    </ng-container>
 </main>

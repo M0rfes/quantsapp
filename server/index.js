@@ -68,4 +68,11 @@ app.get('/SynopsisOptionsOI', (req, res) => {
         .then(data => res.json(data))
         .catch(e => res.json(e));
 });
+app.get('/MasterScript', (req, res) => {
+    console.log('hello');
+    fetch('https://s3.ap-south-1.amazonaws.com/appmasterfiles/scripMaster.txt')
+        .then(data => data.text())
+        .then(d => res.json(d))
+        .catch(e => res.json({ mag: e }));
+});
 app.listen('3000', () => console.log('server running on port 3000'));

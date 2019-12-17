@@ -14,7 +14,7 @@
 </header>
 <main class="container-fluid">
     <div class="heatMap ">
-        <cdk-virtual-scroll-viewport itemSize="400" #vs (scrolledIndexChange)="refresh($event)">
+        <cdk-virtual-scroll-viewport itemSize="304" #vs (scrolledIndexChange)="refresh($event)">
             <app-auto-scroll [vs]="vs" [scroll]="true">
                 <div *cdkVirtualFor="let item of stocks | async">
                     <app-heat-map [stocks]="item"></app-heat-map>

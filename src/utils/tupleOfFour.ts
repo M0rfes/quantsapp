@@ -1,1 +1,1 @@
-export type TupleOfFour<T> = [T, T, T, T];
+export type TupleOfFour<T> = [T, T, T, T, T];

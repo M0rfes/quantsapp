@@ -4,8 +4,7 @@ import { map } from 'rxjs/operators';
 import FOIResult from './interfaces/FOIResult.interface';
 import { FOIRes } from 'src/app/synopsis/futures-oi/interfaces/FOIRes.type';
 import { EmitterService } from 'src/app/shared/emitter.service';
-import { Observable } from 'rxjs';
-import { TupleOfFour } from 'src/utils/tupleOfFour';
+import { TupleOfFive } from 'src/utils/tupleOfFive';
 @Injectable({
   providedIn: 'root',
 })
@@ -81,8 +80,8 @@ export class FOIDataService {
 
   batchFour(
     [f, s, t, fr, ft, ...rest]: FOIRes[],
-    ans: TupleOfFour<FOIRes>[] = [],
-  ): TupleOfFour<FOIRes>[] {
+    ans: TupleOfFive<FOIRes>[] = [],
+  ): TupleOfFive<FOIRes>[] {
     if (rest.length === 0) {
       return [...ans, [f, s, t, fr, ft]];
     } else {

@@ -46,4 +46,9 @@ main {
 
 .symbol {
     color: darken($color: #f49c0f, $amount: 5);
+    max-width: 150px;
+}
+
+.test {
+    color: lighten($color: #ff0000, $amount: 25);
 }

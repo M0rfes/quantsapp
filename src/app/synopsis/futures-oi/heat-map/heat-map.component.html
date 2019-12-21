@@ -5,12 +5,12 @@
                 <p class="symbol">{{ r.SYMBOL }}</p>
                 <p class="price">{{ r.PRICE }}</p>
                 <div>
-                    <p>% price chg</p>
+                    <p>% price</p>
                     <p>{{ r.PRICE_CHANGE * 100 | number: '1.2-2' }}</p>
                 </div>
                 <div>
-                    <p>% OI chg</p>
-                    <p>{{ r.OI_CHANGE * 100 | number: '1.2-2' }}</p>
+                    <p>% OI</p>
+                    <p class="">{{ r.OI_CHANGE * 100 | number: '1.2-2' }}</p>
                 </div>
             </mat-card-content>
         </mat-card>

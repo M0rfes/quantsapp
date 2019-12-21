@@ -1,14 +1,22 @@
-POST https://api.quantsapp.in/app_api/cp-built
+# POST https://api.quantsapp.in/app_api/cp-built
 
+# {
+#     "expiry": "26-Dec-19",
+#     "user_id": "109066",
+#     "token": "729"
+# }
+
+
+# POST https://s3.ap-south-1.amazonaws.com/appmasterfiles/
+# {
+#  " token": "324" ,
+#  "user_id": "54267"
+# }
+
+
+POST http://localhost:3000/signup
 {
-    "expiry": "26-Dec-19",
-    "user_id": "109066",
-    "token": "729"
+  "Content-Type": "application/json"
 }
 
-
-POST https://s3.ap-south-1.amazonaws.com/appmasterfiles/
-{
- " token": "324" ,
- "user_id": "54267"
-}
+{"api":"1|vaibhav@quantsapp.com|9033578494|vaibhav77|Vaibhab|0|0","version":"1.0.51","platform":"Android"}

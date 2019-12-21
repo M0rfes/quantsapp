@@ -10,15 +10,14 @@ import { Subscription, BehaviorSubject } from 'rxjs';
 import { FOIRes } from 'src/app/synopsis/futures-oi/interfaces/FOIRes.type';
 import { FOIDataService } from './FOIData.service';
 import { tap } from 'rxjs/operators';
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { TupleOfFour } from 'src/utils/tupleOfFour';
+import { TupleOfFive } from 'src/utils/tupleOfFive';
 @Component({
   selector: 'app-futures-oi',
   templateUrl: './futures-oi.component.html',
   styleUrls: ['./futures-oi.component.scss'],
 })
 export class FuturesOIComponent implements OnInit, OnDestroy {
-  readonly stocks = new BehaviorSubject<TupleOfFour<FOIRes>[]>([]);
+  readonly stocks = new BehaviorSubject<TupleOfFive<FOIRes>[]>([]);
   subscription: Subscription;
   ctx: Chart;
   @ViewChild('canvas', { static: false }) canvas: ElementRef;

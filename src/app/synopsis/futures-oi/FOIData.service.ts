@@ -28,7 +28,7 @@ export class FOIDataService {
   }
   private fetchData() {
     return this.http
-      .get<FOIResult>(' http://localhost:3000/SynopsisFuturesOI')
+      .get<FOIResult>(' http://localhost:3000/foi')
       .pipe(map(this.processData.bind(this)), map(this.finalResult.bind(this)));
   }
 

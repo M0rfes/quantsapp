@@ -19,7 +19,7 @@ export class TriggerDataService {
     return this.emitS.emitter(this.fetchData.bind(this));
   }
   private fetchData() {
-    return this.http.get<TResult>('http://localhost:3000/OptionTriggers').pipe(
+    return this.http.get<TResult>('http://localhost:3000/ot').pipe(
       map(data =>
         Object.entries(data)
           .filter(([, [t]]) => t.length > 1)

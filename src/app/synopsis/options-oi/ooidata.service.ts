@@ -18,7 +18,7 @@ export class OOIDataService {
   }
   private fetchData() {
     return this.http
-      .get<OOIResult>('http://localhost:3000/SynopsisOptionsOI')
+      .get<OOIResult>('http://localhost:3000/ooi')
       .pipe(map(this.dataFromReq), map(this.formate));
   }
   private dataFromReq(d: OOIResult) {

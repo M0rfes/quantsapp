@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OOIDataService } from './ooidata.service';
 import { OOIRes } from './interfaces/OOIRes.interface';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-options-oi',
@@ -13,6 +14,6 @@ export class OptionsOIComponent implements OnInit {
   constructor(private readonly ooiDataS: OOIDataService) {}
 
   ngOnInit() {
-    this.data = this.ooiDataS.data();
+    this.data = this.ooiDataS.data().pipe(tap(console.log));
   }
 }

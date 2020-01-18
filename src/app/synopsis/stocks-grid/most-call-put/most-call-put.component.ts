@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import {
   MostTradedIndexCallOption,
   FOVRes,
@@ -10,7 +10,7 @@ import { OOIRes } from '../../options-oi/interfaces/OOIRes.interface';
   templateUrl: './most-call-put.component.html',
   styleUrls: ['./most-call-put.component.scss'],
 })
-export class MostCallPutComponent implements OnInit {
+export class MostCallPutComponent implements OnInit, OnDestroy {
   @Input() stocks: FOVRes & OOIRes;
   title: string;
   data: MostTradedIndexCallOption;
@@ -20,6 +20,7 @@ export class MostCallPutComponent implements OnInit {
     const [[title, data]] = Object.entries(this.stocks);
     this.title = title;
     this.data = data;
+    console.log(this.stocks);
   }
   priceChange(pc: string) {
     return +pc * 100;
@@ -28,9 +29,12 @@ export class MostCallPutComponent implements OnInit {
     if (+pc < 0) {
       return '#ff4500';
     } else if (+pc > 0) {
-      return '#90ee90';
+      return 'green';
     } else {
       return '#ffffff';
     }
+  }
+  ngOnDestroy(): void {
+    console.log(this.stocks);
   }
 }

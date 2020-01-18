@@ -1,55 +1,59 @@
-<mat-card class="title-bar">
-  <mat-card-title class="grid-title">
-    {{ title }}
-  </mat-card-title>
-</mat-card>
-<div class="grid">
-  <mat-card *ngFor="let f of data">
-    <mat-card-title class="symbol">
-      {{ f.symbol }}
+<main>
+  <mat-card class="title-bar">
+    <mat-card-title class="grid-title">
+      <h5>
+        {{ title }}
+      </h5>
     </mat-card-title>
-    <mat-card-subtitle>{{ f.expiry }}</mat-card-subtitle>
-    <mat-card-content class="subGrid">
-      <div *ngIf="f.strike">
-        <small>
-          strike
-        </small>
-        <p>
-          {{ f.strike }}
-        </p>
-      </div>
-      <div>
-        <small>
-          price
-        </small>
-        <p>
-          {{ f.ltp }}
-        </p>
-      </div>
-      <div>
-        <small>
-          VOL. Lost
-        </small>
-        <p>
-          {{ f.volume_lots }}
-        </p>
-      </div>
-      <div>
-        <small>
-          OI (%)
-        </small>
-        <p>
-          {{ f.oic }}
-        </p>
-      </div>
-      <div>
-        <small>
-          Price(%)
-        </small>
-        <p [ngStyle]="{ color: priceChangeColor(f.pc) }">
-          {{ priceChange(f.pc) | number: '1.2-2' }}
-        </p>
-      </div>
-    </mat-card-content>
   </mat-card>
-</div>
+  <div class="grid">
+    <mat-card *ngFor="let f of data" class="p">
+      <mat-card-title class="symbol">
+        {{ f.symbol }}
+      </mat-card-title>
+      <mat-card-subtitle>{{ f.expiry }}</mat-card-subtitle>
+      <mat-card-content class="subGrid">
+        <div *ngIf="f.strike">
+          <small>
+            strike
+          </small>
+          <p>
+            {{ f.strike | strike }}
+          </p>
+        </div>
+        <div>
+          <small>
+            price
+          </small>
+          <p [ngStyle]="{ color: priceChangeColor(f.pc) }">
+            {{ f.ltp }}
+          </p>
+        </div>
+        <div>
+          <small>
+            VOL. Lots
+          </small>
+          <p>
+            {{ f.volume_lots }}
+          </p>
+        </div>
+        <div>
+          <small>
+            OI (%)
+          </small>
+          <p>
+            {{ f.oic }}
+          </p>
+        </div>
+        <div>
+          <small>
+            Price(%)
+          </small>
+          <p [ngStyle]="{ color: priceChangeColor(f.pc) }">
+            {{ f.pc | number: '1.2-2' }}
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</main>

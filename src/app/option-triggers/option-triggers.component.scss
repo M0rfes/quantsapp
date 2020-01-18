@@ -1,35 +1,48 @@
 app-stocks-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0.5rem;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
 }
 
 mat-icon {
-    width: 10rem;
-    height: 10rem;
-    font-size: 7rem;
-    display: flex;
-    align-items: center;
+  width: 10rem;
+  height: 10rem;
+  font-size: 7rem;
+  display: flex;
+  align-items: center;
 }
 
 app-stocks-list {
-    padding: 0.5rem 0;
+  padding: 0.5rem 0;
 }
 
-main>div {
-    height: 80vh;
-    padding-top: 20vh;
+main > div {
+  height: 63vh;
+  padding-top: 37vh;
 }
 
 header {
-    position: fixed;
-    width: 100vw;
-    z-index: 1;
-    background: var(--BG-color);
+  position: fixed;
+  width: 100vw;
+  z-index: 1;
+  background: var(--BG-color);
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    div {
+      width: 25%;
+    }
+    h1 {
+      text-transform: capitalize;
+      font-size: 3.5rem;
+    }
+  }
 }

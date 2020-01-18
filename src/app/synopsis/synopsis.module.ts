@@ -11,6 +11,7 @@ import { OptionsOIComponent } from './options-oi/options-oi.component';
 import { NavComponent } from './nav/nav.component';
 import { StocksGridComponent } from './stocks-grid/stocks-grid.component';
 import { SharedModule } from '../shared/shared.module';
+
 @NgModule({
   declarations: [
     FuturesOIComponent,

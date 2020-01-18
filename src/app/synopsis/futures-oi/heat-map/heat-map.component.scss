@@ -1,54 +1,58 @@
 .subGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-width: 16rem;
-    height: 16rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-width: 16rem;
+  height: 16rem;
 }
 
 p {
-    font-size: 2rem;
-    font-weight: bolder;
-    word-wrap: none;
-    margin: 0;
-    padding: 0;
-    text-transform: uppercase;
-    word-wrap: break-word;
+  hyphens: manual;
+  font-size: 2rem;
+  font-weight: bolder;
+  word-wrap: none;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  word-wrap: break-word;
+
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
 }
 
 .price {
-    text-align: center;
+  text-align: center;
 }
 
 .l {
-    background: var(--L-color);
+  background: var(--L-color);
 }
 
 .lu {
-    background: var(--LU-color);
+  background: var(--LU-color);
 }
 
 .s {
-    background: var(--S-color);
+  background: var(--S-color);
 }
 
 .sc {
-    background: var(--SC-color);
+  background: var(--SC-color);
 }
 
 main {
-    display: grid;
-    // grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 1rem;
-    // border: rebeccapurple solid 2px;
-    margin: 1rem;
+  display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 1rem;
+  // border: rebeccapurple solid 2px;
+  margin: 1rem;
 }
 
 .symbol {
-    color: darken($color: #f49c0f, $amount: 5);
-    max-width: 150px;
+  max-width: 150px;
+  font-weight: bolder;
 }
 
 .test {
-    color: lighten($color: #ff0000, $amount: 25);
+  color: lighten($color: #ff0000, $amount: 25);
 }

@@ -20,12 +20,14 @@ export class TriggerDataService {
   }
   private fetchData() {
     return this.http.get<TResult>('http://localhost:3000/ot').pipe(
-      map(data =>
+      tap(console.log),
+      map((data: TResult) =>
         Object.entries(data)
           .filter(([, [t]]) => t.length > 1)
           .map(([h, t]) => t.map(val => ({ [h]: val })))
           .reduce(zipMap),
       ),
+      tap(console.log),
     );
   }
   batchTwo(

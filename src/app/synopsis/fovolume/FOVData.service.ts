@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { FOVResult } from './interfaces/FOVResult.interface';
 import zipMap from 'src/utils/zipMap';
 import { EmitterService } from 'src/app/shared/emitter.service';

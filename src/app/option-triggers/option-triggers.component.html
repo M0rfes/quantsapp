@@ -1,39 +1,57 @@
-<header>
+<section>
+  <header>
+    <nav>
+      <div>
+        <img src="../../assets/splash_logo.png" alt="splash_logo" />
+      </div>
+      <div>
+        <h1>option trigger</h1>
+      </div>
+    </nav>
     <div class="grid">
-        <app-headers title="highest call">
-            <mat-icon style="color: #90ee90;">
-                trending_up
-            </mat-icon>
-        </app-headers>
-        <app-headers title="highest put" end="true">
-            <mat-icon style="color: #ff4500;">
-                trending_down
-            </mat-icon>
-        </app-headers>
+      <app-headers title="highest call">
+        <mat-icon style="color: #90ee90;">
+          trending_up
+        </mat-icon>
+      </app-headers>
+      <app-headers title="highest put" end="true">
+        <mat-icon style="color: #ff4500;">
+          trending_down
+        </mat-icon>
+      </app-headers>
     </div>
-</header>
+  </header>
 
-<div class="grid">
+  <div class="grid">
     <main>
-        <div>
-            <cdk-virtual-scroll-viewport itemSize="543" #vs (scrolledIndexChange)="refreashCalls($event)">
-                <app-auto-scroll [vs]="vs" [scroll]="true">
-                    <article *cdkVirtualFor="let item of calls | async">
-                        <app-stocks-list [stocks]="item"></app-stocks-list>
-                    </article>
-                </app-auto-scroll>
-            </cdk-virtual-scroll-viewport>
-        </div>
+      <div>
+        <cdk-virtual-scroll-viewport
+          itemSize="543"
+          #vs
+          (scrolledIndexChange)="refreashCalls($event)"
+        >
+          <app-auto-scroll [vs]="vs" [scroll]="true">
+            <article *cdkVirtualFor="let item of calls | async">
+              <app-stocks-list [stocks]="item"></app-stocks-list>
+            </article>
+          </app-auto-scroll>
+        </cdk-virtual-scroll-viewport>
+      </div>
     </main>
     <main>
-        <div>
-            <cdk-virtual-scroll-viewport itemSize="543" #vs2 (scrolledIndexChange)="refreashPuts($event)">
-                <app-auto-scroll [vs]="vs2" [scroll]="true">
-                    <article *cdkVirtualFor="let item of puts | async">
-                        <app-stocks-list [stocks]="item"></app-stocks-list>
-                    </article>
-                </app-auto-scroll>
-            </cdk-virtual-scroll-viewport>
-        </div>
+      <div>
+        <cdk-virtual-scroll-viewport
+          itemSize="543"
+          #vs2
+          (scrolledIndexChange)="refreashPuts($event)"
+        >
+          <app-auto-scroll [vs]="vs2" [scroll]="true">
+            <article *cdkVirtualFor="let item of puts | async">
+              <app-stocks-list [stocks]="item"></app-stocks-list>
+            </article>
+          </app-auto-scroll>
+        </cdk-virtual-scroll-viewport>
+      </div>
     </main>
-</div>
+  </div>
+</section>

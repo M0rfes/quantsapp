@@ -3,8 +3,7 @@ import { Observable, Subscription, BehaviorSubject } from 'rxjs';
 import { FOVRes } from '../fovolume/interfaces/FOVRes.interface';
 import { OOIRes } from '../options-oi/interfaces/OOIRes.interface';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { tap, take } from 'rxjs/operators';
-import { AutoScrollComponent } from 'src/app/shared/auto-scroll/auto-scroll.component';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-stocks-grid',
@@ -19,21 +18,29 @@ export class StocksGridComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   dataLen: number;
   currentData: FOVRes[] | OOIRes[] = [];
+  @Input() itemSize: number;
   constructor() {}
 
   ngOnInit() {
     this.subscription = this.getData();
   }
   private getData() {
-    return this.data.pipe(tap(this.refeatch.bind(this))).subscribe();
+    return this.data
+      .pipe(
+        tap(this.refeatch.bind(this)),
+        tap(d => console.log(d, 'data')),
+      )
+      .subscribe();
   }
   private refeatch(data: FOVRes[] | OOIRes[]) {
     this.stocks.next([...this.stocks.getValue(), ...data] as any);
+    console.log(this.stocks.getValue());
     this.dataLen = this.stocks.getValue().length - 1;
     this.currentData = data;
   }
-  log(e: any) {
-    if (e === this.dataLen) {
+  log(e: number) {
+    console.log(e, this.dataLen);
+    if (e === this.dataLen - 1) {
       this.refeatch(this.currentData);
     }
   }

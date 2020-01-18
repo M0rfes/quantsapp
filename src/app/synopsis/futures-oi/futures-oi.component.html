@@ -1,25 +1,29 @@
 <header class="container-fluid">
-    <nav>
-        <div class="logo">
-            <img src="../assets/Icon-256.png" alt="QuantsAPP" />
-        </div>
-        <div class="title">
-            <h1>synopsis>>futures oi</h1>
-        </div>
-        <div class="pie">
-            <!-- TODO Make a canves component -->
-            <canvas #canvas>{{ ctx }}</canvas>
-        </div>
-    </nav>
+  <nav>
+    <div class="logo">
+      <img src="../assets/Icon-256.png" alt="QuantsAPP" />
+    </div>
+    <div class="title">
+      <h1>synopsis>>futures oi</h1>
+    </div>
+    <div class="pie">
+      <!-- TODO Make a canves component -->
+      <canvas #canvas>{{ ctx }}</canvas>
+    </div>
+  </nav>
 </header>
 <main class="container-fluid">
-    <div class="heatMap ">
-        <cdk-virtual-scroll-viewport itemSize="304" #vs (scrolledIndexChange)="refresh($event)">
-            <app-auto-scroll [vs]="vs" [scroll]="true">
-                <div *cdkVirtualFor="let item of stocks | async">
-                    <app-heat-map [stocks]="item"></app-heat-map>
-                </div>
-            </app-auto-scroll>
-        </cdk-virtual-scroll-viewport>
-    </div>
+  <div class="heatMap ">
+    <cdk-virtual-scroll-viewport
+      itemSize="304"
+      #vs
+      (scrolledIndexChange)="refresh($event)"
+    >
+      <app-auto-scroll [vs]="vs" [scroll]="true">
+        <div *cdkVirtualFor="let item of stocks | async">
+          <app-heat-map [stocks]="item"></app-heat-map>
+        </div>
+      </app-auto-scroll>
+    </cdk-virtual-scroll-viewport>
+  </div>
 </main>

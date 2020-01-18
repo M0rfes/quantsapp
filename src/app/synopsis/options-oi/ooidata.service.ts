@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { OOIResult } from './interfaces/OOIResult.interface';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { EmitterService } from 'src/app/shared/emitter.service';
 import { OOIRes } from './interfaces/OOIRes.interface';
 
